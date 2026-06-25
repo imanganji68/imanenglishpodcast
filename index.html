@@ -836,10 +836,10 @@
   async function loadTranscript(ep) {
     if (!ep || !ep.transcriptPath || ep.cuesLoaded || ep.cuesLoading) return;
     ep.cuesLoading = true; ep.cuesError = false;
-    // Primary: archive.org URL; fallback: relative paths
-    const archiveUrl = toArchiveUrl(normalizePath(ep.transcriptPath));
+    // Primary: both archive.org path variants; fallback: relative paths
+    const archiveCandidates = buildArchiveUrlCandidates(ep.transcriptPath);
     const relativePaths = candidatePaths(ep.transcriptPath).map(toResolvedUrl);
-    const urls = [archiveUrl, ...relativePaths.filter(u => u !== archiveUrl)];
+    const urls = [...new Set([...archiveCandidates, ...relativePaths])];
     ep.cuesTriedUrls = urls;
     let text = null;
     for (const url of urls) {
@@ -858,18 +858,25 @@
 
   // ---------- Path resolution (GitHub Pages + Internet Archive hosting) ----------
   function toArchiveUrl(path) {
-    // Build a properly-encoded archive.org download URL from a relative path.
-    // e.g. "Iman English Podcast/Elementary/001 - Funeral Arrangements.m4a"
-    // →  "https://archive.org/download/IDENTIFIER/Iman%20English%20Podcast/Elementary/001%20-%20Funeral%20Arrangements.m4a"
     return ARCHIVE_BASE + normalizePath(path).split("/").map(encodeURIComponent).join("/");
   }
+  function buildArchiveUrlCandidates(path) {
+    // Returns up to 2 archive.org candidates:
+    //   1. Full path:  "Iman English Podcast/Elementary/001.m4a"  (web-uploader structure)
+    //   2. Short path: "Elementary/001.m4a"  (CLI upload from inside the folder)
+    const norm = normalizePath(path);
+    const urls = [toArchiveUrl(norm)];
+    const PREFIX = "Iman English Podcast/";
+    if (norm.startsWith(PREFIX)) { urls.push(toArchiveUrl(norm.slice(PREFIX.length))); }
+    return urls;
+  }
   function buildCandidateUrls(ep) {
-    const norm = normalizePath(ep.audioPath);
     const list = []; const seen = new Set();
-    // Primary: archive.org URL (where the audio lives)
-    const archiveUrl = toArchiveUrl(norm);
-    seen.add(archiveUrl); list.push(archiveUrl);
-    // Fallback: relative paths (useful for local development / future migrations)
+    // Primary: both archive.org path variants
+    for (const url of buildArchiveUrlCandidates(ep.audioPath)) {
+      if (!seen.has(url)) { seen.add(url); list.push(url); }
+    }
+    // Fallback: relative paths (useful for local development)
     for (const p of candidatePaths(ep.audioPath)) {
       const url = toResolvedUrl(normalizePath(p));
       if (!seen.has(url)) { seen.add(url); list.push(url); }
