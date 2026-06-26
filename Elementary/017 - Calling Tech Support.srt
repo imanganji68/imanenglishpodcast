@@ -1,0 +1,408 @@
+1
+00:00:00,000 --> 00:00:06,800
+Hello everyone and welcome to EnglishPod. My name is Marco.
+
+2
+00:00:06,800 --> 00:00:12,080
+My name is Catherine and today we have an elementary level lesson for you all about computers.
+
+3
+00:00:12,080 --> 00:00:18,000
+That's right. So we are going to take a look at some of the basic parts of a computer
+
+4
+00:00:18,000 --> 00:00:23,760
+and also about bad programs that could affect your computer and make it not work.
+
+5
+00:00:23,840 --> 00:00:30,400
+That's right. So before we get going we have a verb for you that we're going to look at in vocabulary
+
+6
+00:00:30,400 --> 00:00:39,120
+preview. Very cabbiery preview. All right. So today on vocabulary preview we have a verb as you said
+
+7
+00:00:39,120 --> 00:00:45,760
+and it's to crash to crash. Okay. This has a couple of different meanings but in today's
+
+8
+00:00:45,760 --> 00:00:53,360
+dialogue this means for your computer to shut down or to freeze or to stop working. Right. Because
+
+9
+00:00:53,440 --> 00:00:58,880
+maybe you heard of a car crash right when two cars bam hit each other. In this case your computer
+
+10
+00:00:58,880 --> 00:01:06,480
+is just not working anymore. It's stopped working. It freezes. That's right. So you can't use it. So my computer
+
+11
+00:01:06,480 --> 00:01:12,560
+crashed is a way to say my computer stopped working. Okay. So that's a word that we're going to
+
+12
+00:01:12,560 --> 00:01:17,360
+listen in our dialogue today. Why don't we jump right into it and we'll be back shortly.
+
+13
+00:01:18,240 --> 00:01:27,360
+Hello. Thanks for calling 1 2 3 tech help. I'm Todd. How can I help you?
+
+14
+00:01:27,360 --> 00:01:34,720
+Hello. Can you help me? I'm my computer. Oh man. It's okay sir. Calm down. What happened?
+
+15
+00:01:34,720 --> 00:01:41,120
+I turned on my laptop at a broke. I mean the monitor went black. Okay sir. It sounds like you might
+
+16
+00:01:41,120 --> 00:01:49,920
+have a virus. I don't feel sick. I'll be check. Nope. No fever. I'm fine. No. Your computer might
+
+17
+00:01:49,920 --> 00:01:56,560
+have a virus. I mean it has a bad program on it. Maybe that's why it crashed. I recommend that you
+
+18
+00:01:56,560 --> 00:02:04,960
+run an anti virus program in order to safely remove any unwanted spyware or trojans. Wait a minute.
+
+19
+00:02:05,440 --> 00:02:10,959
+Crash. spyware. Trojans. What? Where? When?
+
+20
+00:02:15,359 --> 00:02:20,480
+All right. So lots of great technology words today. Let's take a look at a few of them in
+
+21
+00:02:20,480 --> 00:02:30,320
+language takeaway. Language takeaway. All right. So let's start off with our first word. You've
+
+22
+00:02:30,320 --> 00:02:38,959
+probably heard it before but let's go over it just in case. A laptop. A laptop is a kind of computer.
+
+23
+00:02:38,959 --> 00:02:43,760
+Mm hmm. We have desktop laptop. Right. So your lap is the top part of your legs.
+
+24
+00:02:44,320 --> 00:02:50,720
+So a laptop computer is a small portable computer that you can take with you anywhere. That's
+
+25
+00:02:50,720 --> 00:02:56,079
+right. A lot of students have laptops and businessmen as well. So you mentioned the opposite
+
+26
+00:02:56,080 --> 00:03:03,920
+would be a desktop. Right. So it sits on top of a desk. Okay. So both a desktop and the laptop
+
+27
+00:03:03,920 --> 00:03:11,520
+have monitors. A computer monitor. So a monitor is like a TV for your computer. It's where you can
+
+28
+00:03:11,520 --> 00:03:18,720
+see what you're doing. Okay. So it's called a monitor or a screen maybe. You can also use the word
+
+29
+00:03:18,720 --> 00:03:26,800
+screen but monitor is the the technical word for the usually a box like a TV that goes with the
+
+30
+00:03:26,800 --> 00:03:33,440
+desktop computer. Okay. Very good. So Todd the computer guy said, hey, I think your computer
+
+31
+00:03:33,440 --> 00:03:40,560
+might have a virus. Ooh. That doesn't sound good. Yeah. A virus. So I guess you know what a
+
+32
+00:03:40,560 --> 00:03:45,920
+virus is when you get sick, right? You get the flu or the cold. That's right. You can say I have a virus.
+
+33
+00:03:46,640 --> 00:03:54,560
+But how can a computer have a virus? This means it's a program that is designed to hurt your computer.
+
+34
+00:03:54,560 --> 00:04:00,480
+All right. So it's like your computer is sick and it doesn't work. So a virus might make your computer
+
+35
+00:04:00,480 --> 00:04:08,799
+crash. Exactly. So in order to avoid this, what we need is an anti-virus program. Okay. So a virus
+
+36
+00:04:08,799 --> 00:04:15,359
+is a bad thing. Anti-virus is a good thing. An anti-virus program is a program that protects
+
+37
+00:04:15,440 --> 00:04:22,000
+your computer from viruses. So you would say anti-virus. You might have heard of a very famous
+
+38
+00:04:22,480 --> 00:04:31,360
+program called Norton anti-virus or McAfee anti-virus. These are brands. Okay. Very good. So those are some
+
+39
+00:04:31,360 --> 00:04:36,240
+of the main technical terms that we have on language takeaway. Why don't we listen to our dialogue
+
+40
+00:04:36,240 --> 00:04:41,760
+quickly one signal? Why don't we listen to our dialogue quickly again and we'll be back with fluency
+
+41
+00:04:41,840 --> 00:04:50,800
+builder. Hello. Thanks for calling 1, 2, 3 tech help. I'm Todd. How can I help you?
+
+42
+00:04:50,800 --> 00:04:58,480
+Hello. Can you help me? My computer. Oh man. It's okay, sir. Calm down. What happened?
+
+43
+00:04:58,480 --> 00:05:04,800
+I turned on my laptop and it broke. I mean the monitor went black. Okay, sir. It sounds like you might
+
+44
+00:05:04,800 --> 00:05:13,920
+have a virus. I don't feel sick. I'll be check. Nope. No fever. I'm fired. No. Your computer might
+
+45
+00:05:13,920 --> 00:05:20,640
+have a virus. I mean it has a bad program on it. Maybe that's why it crashed. I recommend that you
+
+46
+00:05:20,640 --> 00:05:28,800
+run an anti-virus program in order to safely remove any unwanted spyware or trojans. Phew. Wait a minute.
+
+47
+00:05:29,440 --> 00:05:35,040
+Crash. spyware. Trojans. What? Where? When?
+
+48
+00:05:39,120 --> 00:05:44,160
+All right. We're back. So now let's start off with three key phrases on fluency builder.
+
+49
+00:05:44,880 --> 00:05:51,200
+This first phrase is one that I know you use a lot. I use it too. If you say, oh man. Oh man.
+
+50
+00:05:51,840 --> 00:05:58,560
+So now depending on the tone, it can mean different things, right? So in this case, what does it mean?
+
+51
+00:05:59,120 --> 00:06:05,440
+So the man who's having problems with his computer says, my computer. Oh man.
+
+52
+00:06:05,440 --> 00:06:12,080
+Right. He seems a little bit anguish. This is a point. Yeah. Oh man. So it's an interjection.
+
+53
+00:06:12,080 --> 00:06:18,960
+That's right. So you can say, oh man. My computer crashed. Right. Oh man. You're always late.
+
+54
+00:06:18,960 --> 00:06:24,560
+Now you can also say it for maybe surprise. Like oh man. So when you're excited about something.
+
+55
+00:06:24,880 --> 00:06:34,880
+Oh man. This computer game is awesome. Mm-hmm. Okay. So it's just a way of expressing maybe disappointment or in some cases excitement.
+
+56
+00:06:34,880 --> 00:06:44,560
+That's right. So think about the way that you say it. Oh man. Oh man. Okay. So now the guy Todd. He tells him, hey, sir.
+
+57
+00:06:44,560 --> 00:06:49,520
+It's okay. Calm down. Right. Okay. So this might be funny sounding because we say,
+
+58
+00:06:50,479 --> 00:06:57,680
+calm. So be calm. Calm down. This is a phrase. It's almost like you're so upset and you're standing up.
+
+59
+00:06:57,680 --> 00:07:06,719
+Calm down. Calm down. Cool it. Okay. So you tell someone to calm down. That's right. So you might hear a
+
+60
+00:07:06,719 --> 00:07:13,359
+parent say about their child. The child won't calm down. What do I do? Mm-hmm. Okay. So it's a phrase.
+
+61
+00:07:13,360 --> 00:07:19,520
+Let's use it together. Calm down. Calm down. To calm down. All right. And now for our third phrase.
+
+62
+00:07:20,240 --> 00:07:27,120
+I mean, I mean, okay. So this is also in an interjection and it's very, very, very common. Okay.
+
+63
+00:07:27,120 --> 00:07:32,000
+So you'll probably hear people when they're talking. They're like, oh, I went over there. I mean,
+
+64
+00:07:32,000 --> 00:07:37,600
+we went to this place. It's an interjection. That's right. And usually we say this when we want to
+
+65
+00:07:38,160 --> 00:07:43,600
+correct what we just said. For example, your computer might have a virus. I mean,
+
+66
+00:07:44,320 --> 00:07:51,920
+it has a bad program on it. Okay. So the computer support man Todd, he understands maybe this person
+
+67
+00:07:52,720 --> 00:07:58,240
+doesn't know what a virus is. So I mean, he's he's changing what he just said. Mm-hmm. It could say,
+
+68
+00:07:58,240 --> 00:08:03,120
+oh, Saturday I'm going to the movie. I mean, Sunday I'm going to the movies. Mm-hmm.
+
+69
+00:08:03,200 --> 00:08:08,080
+Okay. What are you doing on Sunday? All right. So you use it to correct yourself or maybe
+
+70
+00:08:08,080 --> 00:08:15,280
+further explain something because maybe you are talking about a topic and maybe the person is not
+
+71
+00:08:15,280 --> 00:08:20,240
+understanding you. So you want to make it more clear. Mm-hmm. That's right. I mean,
+
+72
+00:08:21,120 --> 00:08:26,880
+right. Like she was very angry at me. I mean, of course she was because I did something wrong.
+
+73
+00:08:26,880 --> 00:08:32,080
+Right. So it's a way to offer an explanation. Mm-hmm. All right. So try and use that one in your
+
+74
+00:08:32,160 --> 00:08:38,400
+speech this week. It's really really great common English phrase. All right. So why don't we
+
+75
+00:08:38,400 --> 00:08:42,400
+listen to our dialogue for the last time and we'll be back to talk a little bit more.
+
+76
+00:08:48,640 --> 00:08:52,960
+Hello. Thanks for calling 1-2-3 TechHelp. I'm Todd. How can I help you?
+
+77
+00:08:52,960 --> 00:09:00,400
+Hello. Can you help me? I'm my computer. Oh, man. It's okay, sir. Calm down. What happened?
+
+78
+00:09:00,400 --> 00:09:06,720
+I turned on my laptop at a broke. I mean, the monitor went black. Okay, sir. It sounds like you might
+
+79
+00:09:06,720 --> 00:09:15,360
+have a virus. I don't feel sick. I'll be check. Nope. Don't fever up-vide. No, your computer
+
+80
+00:09:15,360 --> 00:09:22,000
+might have a virus. I mean, it has a bad program on it. Maybe that's why it crashed. I recommend
+
+81
+00:09:22,000 --> 00:09:27,600
+that you run an anti-virus program in order to safely remove any unwanted spyware or trojans.
+
+82
+00:09:28,560 --> 00:09:36,560
+Wait a minute. Crash. spyware. Trojan. Watch. Where? When?
+
+83
+00:09:43,520 --> 00:09:49,360
+All right. So Marco, in today's dialogue, we heard a couple of strange words about computer viruses.
+
+84
+00:09:49,360 --> 00:09:55,200
+One of them, you might be familiar with from Greek stories and fables.
+
+85
+00:09:55,520 --> 00:10:02,400
+Trojan. All right. A trojan. So it's a kind of bad software that will hurt your computer.
+
+86
+00:10:02,400 --> 00:10:08,160
+Yeah. It's a type of virus that comes in. It's supposed to be a good program or not harm your
+
+87
+00:10:08,160 --> 00:10:13,600
+computer, but it's really just a lie. It's disguised as something else. And then it starts to
+
+88
+00:10:13,600 --> 00:10:18,560
+really ruin your computer. They're very, very dangerous. Yeah. So why do you think it's called a trojan?
+
+89
+00:10:18,560 --> 00:10:25,040
+I don't know. Probably because of a trojan, something because it's very difficult like a trojan.
+
+90
+00:10:25,199 --> 00:10:29,439
+Well, think about the story of the Trojan horse, right? You know, that story. So
+
+91
+00:10:29,439 --> 00:10:36,240
+so back in ancient Greece, there was a war happening and Troye wanted to defeat its enemy
+
+92
+00:10:36,240 --> 00:10:41,520
+and they didn't know how to do it. So they thought and thought and thought and they came up with an idea.
+
+93
+00:10:41,520 --> 00:10:47,199
+They would build a horse and they would give it as a gift. But inside the horse, would be warriors,
+
+94
+00:10:47,199 --> 00:10:53,280
+fighters. Right. So when the city opened its doors to this wonderful gift, they would
+
+95
+00:10:53,360 --> 00:10:59,600
+receive a horrible gift and attack. And so Trojan is like that. It's like software that you
+
+96
+00:10:59,600 --> 00:11:04,400
+think is safe, but then it attacks your computer by surprise. They're very dangerous. And now things
+
+97
+00:11:04,400 --> 00:11:11,360
+have come up like Trojans and worms and a lot of different names for them, but it's crazy now.
+
+98
+00:11:11,360 --> 00:11:16,640
+Although I hear Mac users don't have these problems. We do not. That's if you use a Mac and
+
+99
+00:11:16,640 --> 00:11:22,800
+Tosh computer, you probably have very few problems with viruses and things like that. Wow.
+
+100
+00:11:22,800 --> 00:11:28,000
+That's one point in favor for Mac users. Absolutely. So let us know. Have you had problems with
+
+101
+00:11:28,000 --> 00:11:33,280
+a virus on your computer? Have you ever called TechSupport? Our website is EnglishPod.com. We hope to see
+
+102
+00:11:33,280 --> 00:11:43,280
+you there. All right. Bye everyone. Bye.
+
