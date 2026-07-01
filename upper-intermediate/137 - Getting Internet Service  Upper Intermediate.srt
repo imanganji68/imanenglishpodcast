@@ -1,0 +1,548 @@
+1
+00:00:00,000 --> 00:00:05,440
+Hello English learners. Welcome to EnglishPod. My name is Marko.
+
+2
+00:00:05,440 --> 00:00:13,680
+And my name is Katherine and today we're talking about something very, very important in the computer age internet internet and internet connections.
+
+3
+00:00:13,680 --> 00:00:23,440
+Right, I think well so many people use the internet now and have it but it's sometimes a little bit complicated to maybe get a plan or maybe if you're not too familiar with the terms.
+
+4
+00:00:23,440 --> 00:00:25,440
+That's where we're going to be looking at today.
+
+5
+00:00:25,520 --> 00:00:30,960
+So listen out for some of these words today where we're talking on the phone with someone who's going to help us get a plan.
+
+6
+00:00:30,960 --> 00:00:37,520
+When we come back we'll be talking all about what some of these words and phrases mean so if you're confused just wait a couple seconds and we'll be back.
+
+7
+00:00:42,000 --> 00:00:48,480
+Welcome to Galenet. How can I help you? Hi. I would like to get an internet plan for my house. Of course.
+
+8
+00:00:49,920 --> 00:00:55,120
+We have three different plans with different prices you can choose from. The first one is the cheapest
+
+9
+00:00:55,120 --> 00:01:03,599
+but most basic plan which is $30 a month. This is for broadband internet with a download speed of 512 kbps.
+
+10
+00:01:04,479 --> 00:01:11,440
+I have no idea what kbps means. I just want to be able to get online, play games and chat with my friends.
+
+11
+00:01:11,440 --> 00:01:17,360
+Oh and watch movies online as well. Well this connection might be a bit too slow for your needs.
+
+12
+00:01:17,360 --> 00:01:23,680
+I suggest you get the premium package for $50 a month which includes a connection speed of two megabytes.
+
+13
+00:01:23,760 --> 00:01:30,240
+That way you can play games online without any lag. This package also includes a wireless router and a personal firewall.
+
+14
+00:01:30,240 --> 00:01:33,440
+Absolutely free. Do I have to pay an installation fee?
+
+15
+00:01:34,560 --> 00:01:43,680
+Lucky for you, this month we aren't charging our normal installation fee. You're saving yourself a hundred bucks right there and we'll throw in this pen drive. Awesome!
+
+16
+00:01:43,760 --> 00:01:53,120
+All right so interesting. A lot of these technical terms specifically for internet and computers and
+
+17
+00:01:53,120 --> 00:01:58,880
+connection and all that stuff. Yeah and the nice thing about some of these words is that they can be used in
+
+18
+00:01:58,880 --> 00:02:04,480
+other ways as well. So we're learning about these and expanding our vocabulary but they're useful in
+
+19
+00:02:04,480 --> 00:02:11,360
+many other contexts as well. Okay so let's get started with these words now in language takeaway.
+
+20
+00:02:12,320 --> 00:02:20,720
+Language takeaway. So this first phrase for example is something that you see advertised all the time and it's
+
+21
+00:02:20,720 --> 00:02:27,360
+well it's a kind of internet connection. Broadband Internet. Okay so internet is pretty clear but
+
+22
+00:02:27,360 --> 00:02:33,200
+broadband you might be asking what the heck can this mean? Okay so you have broad. So broad means wide.
+
+23
+00:02:33,200 --> 00:02:39,840
+Wide and a band is basically kind of like a frequency that which something works. Like bandwidth.
+
+24
+00:02:39,840 --> 00:02:46,320
+Band with. So you have broadband you have fast or high speed internet. That means the bigger the space is the
+
+25
+00:02:46,320 --> 00:02:53,200
+more information can be transferred. So it's it's a fast connection. Exactly. Before broadband we had dial-up
+
+26
+00:02:53,200 --> 00:03:04,160
+internet. Yeah. Remember AOL? Yeah. So you have to use your modem and call a number and then get
+
+27
+00:03:04,240 --> 00:03:10,079
+connected by my telephone toy was a dial-up connection but it was so slow. And every time it broke the
+
+28
+00:03:10,079 --> 00:03:16,000
+connection would break. You had to dial-up again and again the whole process is so annoying. Exactly so
+
+29
+00:03:16,720 --> 00:03:22,720
+fortunately now not many people use dial-up anymore and we have broadband internet. Now if you have
+
+30
+00:03:22,720 --> 00:03:29,280
+broadband internet it's really convenient because you can download any type of application or music videos,
+
+31
+00:03:30,160 --> 00:03:35,360
+right so this is another key computer word that actually has a couple of different uses. For example
+
+32
+00:03:35,360 --> 00:03:41,200
+as you said you can download music or download photos. That means you find a photo on the internet that you
+
+33
+00:03:41,200 --> 00:03:47,920
+like and you could save it on your computer. But you can also have a download so it can be a thing too.
+
+34
+00:03:47,920 --> 00:03:54,640
+Okay so if maybe you're downloading three different files you have three downloads. Okay so
+
+35
+00:03:54,640 --> 00:04:00,399
+two download and download. Very good. So now we internet you have different speeds as we talked
+
+36
+00:04:00,399 --> 00:04:09,119
+about right. How fast you're downloading something and the guy mentioned 512 KBPS. Oh no not number one of
+
+37
+00:04:09,119 --> 00:04:14,399
+these KBPS so this man actually this is pretty simple. You can think about kilobytes. You've heard
+
+38
+00:04:14,399 --> 00:04:20,640
+about megabytes kilobytes. This is a size. Mm-hmm that how fast you can receive these packets of
+
+39
+00:04:20,640 --> 00:04:29,760
+information. So 512 kilobytes per second. Per second that's I have no idea how much that is.
+
+40
+00:04:29,760 --> 00:04:36,159
+It's maybe a lot it sounds like a lot. Right well basically it is a lot but we saw later that
+
+41
+00:04:36,159 --> 00:04:43,039
+he was asking for a connection speed of two megabytes. Ooh so mega is bigger than KBPS right?
+
+42
+00:04:43,039 --> 00:04:48,960
+Right. All right so these are different speeds of transferring information right so this is a way for you
+
+43
+00:04:49,280 --> 00:04:55,599
+to see what kind of internet plan you want. Exactly and so you have kilobytes we have megabytes
+
+44
+00:04:55,599 --> 00:05:00,960
+and basically you want a faster connection speed because you want to avoid lag.
+
+45
+00:05:00,960 --> 00:05:06,880
+Ooh lag. All right this is a word that you can use in a lot of different ways for example
+
+46
+00:05:06,880 --> 00:05:12,320
+my brother always lags behind. Okay so it's it's a verb but in this case we don't have the
+
+47
+00:05:12,320 --> 00:05:19,280
+noun so lag is slowness. Yeah it's like a delay. Yeah it's delay and in something so in this case
+
+48
+00:05:20,080 --> 00:05:25,360
+I can't even play my video games because there's too much lag. Mm-hmm. So I mean the internet's too slow.
+
+49
+00:05:25,360 --> 00:05:30,800
+Too slow exactly. So that's what happens when you have a slow connection speed you have lag and
+
+50
+00:05:30,800 --> 00:05:36,000
+as you can say it refers to something that's slow or delayed so you can use it in other contexts
+
+51
+00:05:36,000 --> 00:05:41,760
+when you want to say something is a little bit slow. Mm-hmm. Well another key thing here as we're
+
+52
+00:05:41,840 --> 00:05:46,960
+talking about internet connections is the router so router is something that helps us to
+
+53
+00:05:48,800 --> 00:05:54,880
+route an internet connection so it for example. It's basically distributes the internet
+
+54
+00:05:54,880 --> 00:05:59,920
+connection to different computers or to different users. And some of these you plug in and some of
+
+55
+00:05:59,920 --> 00:06:05,280
+them are wireless that means without a wire. So a wireless router is something that a little box
+
+56
+00:06:05,280 --> 00:06:11,599
+in your house that allows you to maybe have three or four computers on one broadband connection.
+
+57
+00:06:12,400 --> 00:06:18,080
+So it's very popular now you go to Starbucks and you have Wi-Fi in order to have Wi-Fi or wireless
+
+58
+00:06:18,080 --> 00:06:24,719
+internet you need a router, a wireless router. Okay so wireless router and finally what is something
+
+59
+00:06:24,719 --> 00:06:30,400
+that might get in the way of a connection? You have a firewall. Very important security measure
+
+60
+00:06:30,400 --> 00:06:34,960
+when navigating the internet. All right so a personal firewall is a firewall that you have in your
+
+61
+00:06:34,960 --> 00:06:40,960
+computer to keep people from spying on you. This keeps other people out. Mm-hmm. So it's exactly
+
+62
+00:06:41,120 --> 00:06:48,719
+that it's a wall between your computer and the outside world. So it protects you from any type of
+
+63
+00:06:48,719 --> 00:06:55,760
+maybe malicious intruders. Right and oftentimes governments and public offices things like that
+
+64
+00:06:55,760 --> 00:07:02,320
+law offices they have firewalls to protect the information that they store because it's so important.
+
+65
+00:07:02,320 --> 00:07:07,520
+That it's secretive. Yeah so firewalls there are many different types of firewalls but a
+
+66
+00:07:07,599 --> 00:07:13,520
+personal firewall is just a basic one. Great so that is our language takeaway for today. Let's
+
+67
+00:07:13,520 --> 00:07:16,719
+check out this dialogue again and slow it down a bit this time.
+
+68
+00:07:23,359 --> 00:07:29,359
+Welcome to Galenet. How can I help you? Hi I would like to get an internet plan for my house. Of
+
+69
+00:07:29,359 --> 00:07:35,039
+course we have three different plans with different prices you can choose from. The first one is the
+
+70
+00:07:35,120 --> 00:07:41,520
+cheapest but most basic plan which is $30 a month. This is for broadband internet with a download
+
+71
+00:07:41,520 --> 00:07:50,160
+speed of 512 KBPS. I have no idea what KBPS means. I just want to be able to get online, play a
+
+72
+00:07:50,160 --> 00:07:55,920
+game and chat with my friends. Oh and watch movies online as well. Well this connection might be a
+
+73
+00:07:55,920 --> 00:08:02,000
+bit too slow for your needs. I suggest you get the premium package for $50 a month which includes
+
+74
+00:08:02,000 --> 00:08:07,600
+a connection speed of two megabytes. That way you can play games online without any lag. This
+
+75
+00:08:07,600 --> 00:08:12,880
+package also includes a wireless router and a personal firewall. Absolutely free. Do I have to pay
+
+76
+00:08:12,880 --> 00:08:18,480
+an installation fee? Lucky for you this month we aren't charging our normal installation fee. You
+
+77
+00:08:18,480 --> 00:08:23,520
+are saving yourself 100 bucks right there and we'll throw in this pen drive. Awesome.
+
+78
+00:08:26,080 --> 00:08:31,280
+All right great so we just heard all these awards that we looked at before but now why don't we take a
+
+79
+00:08:31,280 --> 00:08:38,480
+look at some of these phrases in fluency builder fluency builder what's this first one I can't read
+
+80
+00:08:39,120 --> 00:08:46,240
+I have no idea what did you write it down I have no idea what you're talking about. All right
+
+81
+00:08:46,240 --> 00:08:53,839
+enough game no I have no idea this is it's gonna treat this as a phrase that gets said as is we're not
+
+82
+00:08:53,839 --> 00:09:00,720
+gonna take bits and pieces of it so I have no idea or he has no idea is it a bit of say listen I
+
+83
+00:09:00,720 --> 00:09:06,160
+don't know I don't know I really don't know right the guy was talking about KBPS and all these things
+
+84
+00:09:06,160 --> 00:09:11,360
+and and the other guy was like I have no idea what you're talking about I don't understand and I can
+
+85
+00:09:12,160 --> 00:09:19,360
+definitely am I late yeah well we'll leave that for another one but after this it got a bucks all right
+
+86
+00:09:19,360 --> 00:09:27,440
+so bucks what is this slang bucks 100 bucks 200 bucks a lot of money right so bucks is basically
+
+87
+00:09:27,520 --> 00:09:31,840
+another way of saying dollars all right so this is a way for well this is the way that most Americans
+
+88
+00:09:31,840 --> 00:09:38,960
+talk about money it's a one buck is one US dollar all right so kind of brought 10 bucks Marco right
+
+89
+00:09:38,960 --> 00:09:44,000
+so yeah sure there you go now bucks you can only use it for American currency right you can't use it for
+
+90
+00:09:44,000 --> 00:09:49,600
+like a euros or no you can't say like 10 euros would be 10 bucks no no no no usually you say this about
+
+91
+00:09:49,600 --> 00:09:54,560
+American dollars and you say this just when you're hanging out or how much is this cost oh five bucks
+
+92
+00:09:55,199 --> 00:10:00,160
+yeah very good so the guy was telling him about the price of the internet and everything and he said
+
+93
+00:10:00,160 --> 00:10:07,040
+if he's gonna throw in a pendrive right he's gonna throw it away I don't know he's gonna throw in a
+
+94
+00:10:07,040 --> 00:10:17,839
+pendrive for free oh see so throw in means to to add or include include so listen sir here's your
+
+95
+00:10:18,640 --> 00:10:23,599
+large popcorn and I'm gonna throw in a small die at coke for free wow so you don't
+
+96
+00:10:23,920 --> 00:10:32,000
+so you throw in something it's you include it for free right exactly so this is usually a complementary
+
+97
+00:10:32,000 --> 00:10:38,000
+item great I think this word is really interesting or this phrase so why don't we listen to a couple
+
+98
+00:10:38,000 --> 00:10:46,960
+of other examples using throw in example one if you buy two pizzas we will throw in another one for free
+
+99
+00:10:47,840 --> 00:10:57,920
+example two tell you what I'll buy this computer if you throw in a pair of headphones deal
+
+100
+00:11:01,120 --> 00:11:08,800
+example three the salesman threw in a subscription to the local newspaper for buying his product
+
+101
+00:11:08,800 --> 00:11:16,640
+isn't that great all right great so good examples I think it's clear now the phrases all these words
+
+102
+00:11:16,720 --> 00:11:22,000
+related to the internet absolutely and so useful right so why don't we listen to this dialogue
+
+103
+00:11:22,000 --> 00:11:31,760
+for the last time and then we'll come back and talk a little bit more welcome to galinit how can I
+
+104
+00:11:31,760 --> 00:11:38,800
+help you hi I would like to get an internet plan for my house of course we have three different
+
+105
+00:11:38,800 --> 00:11:44,640
+plans with different prices you can choose from the first one is the cheapest but most basic plan
+
+106
+00:11:44,720 --> 00:11:51,439
+which is thirty dollars a month this is for broadband internet with a download speed of 512 kbps
+
+107
+00:11:52,400 --> 00:11:58,720
+I have no idea what kbps means I just want to be able to get online play games and chat with my
+
+108
+00:11:58,720 --> 00:12:05,280
+friends oh and watch movies online as well well this connection might be a bit too slow for your needs
+
+109
+00:12:05,280 --> 00:12:10,240
+I suggest you get the premium package for fifty dollars a month which includes a connection speed
+
+110
+00:12:10,320 --> 00:12:16,080
+of two megabytes that way you can play games online without any lag this package also includes
+
+111
+00:12:16,080 --> 00:12:21,280
+a wireless router and a personal firewall absolutely free do I have to pay an installation fee
+
+112
+00:12:22,480 --> 00:12:27,520
+lucky for you this month we aren't charging our normal installation fee you're saving yourself
+
+113
+00:12:27,520 --> 00:12:31,600
+a hundred bucks right there and we'll throw in this pen drive awesome
+
+114
+00:12:32,080 --> 00:12:41,600
+so the internet it's a big deal nowadays and now you can do so much on it not only navigate
+
+115
+00:12:41,600 --> 00:12:48,720
+websites anymore but watch movies download applications photos, Facebook all this type of things
+
+116
+00:12:48,720 --> 00:12:53,360
+now that you can do on the internet you can even do it from your phone like when you're in the bathroom
+
+117
+00:12:53,360 --> 00:12:59,440
+or on the train and you're scary you're there's we're always connected right so it's it's interesting
+
+118
+00:12:59,520 --> 00:13:05,600
+you're always connected you're always online with people and it's actually very noticeable when
+
+119
+00:13:05,600 --> 00:13:10,640
+you maybe live somewhere else before you used to have to write letters I don't think many people
+
+120
+00:13:10,640 --> 00:13:17,120
+will receive handwritten letters anymore never I'm speaking for myself I never received and I
+
+121
+00:13:17,120 --> 00:13:22,000
+don't write them either so yeah I guess I'm guilty of it so now people just send emails obviously
+
+122
+00:13:22,000 --> 00:13:27,840
+it's more convenient but maybe it's a little bit less significant maybe than actually going to
+
+123
+00:13:27,840 --> 00:13:32,240
+the post office or taking the time to write a letter going to the post office and stuff well
+
+124
+00:13:32,240 --> 00:13:36,480
+I don't know there's something nice about having a physical thing you can hold on to but I wonder if
+
+125
+00:13:36,480 --> 00:13:41,280
+one day we're gonna forget how to write yeah you know like write with a pen with a pen and pencil
+
+126
+00:13:41,280 --> 00:13:45,600
+exactly we're gonna have these little pda's and little iPhones and they're gonna just you're
+
+127
+00:13:45,600 --> 00:13:49,600
+gonna talk and they're gonna take everything down a note form for you well now it's kind of
+
+128
+00:13:49,600 --> 00:13:55,760
+happening with the Kindle right now you can have books on this electronic device that lets you read
+
+129
+00:13:55,760 --> 00:14:01,840
+through them and you can carry a hundred books with you so now you don't even really need
+
+130
+00:14:01,840 --> 00:14:06,480
+physical books and you're which is good on on some level because you know you're saving trees
+
+131
+00:14:06,480 --> 00:14:12,240
+and space and all that stuff but but there's something I don't know physical about reading a book
+
+132
+00:14:12,240 --> 00:14:17,360
+you hold it you flip the pages you know how many pages you have left I don't know we'll see
+
+133
+00:14:17,360 --> 00:14:21,520
+maybe I'll be a convert one day but for now I'm good with paper books all right so well what are
+
+134
+00:14:21,600 --> 00:14:26,960
+you guys think about the internet about electronic book you can also tell us any problems or
+
+135
+00:14:26,960 --> 00:14:31,280
+confusion you have with the things that we talked about today hopefully everything is clear but if not
+
+136
+00:14:31,280 --> 00:14:35,680
+we are here to answer your questions would like to do so so check out our website EnglishPod.com
+
+137
+00:14:35,680 --> 00:14:43,680
+all right we'll see you guys there and until next time goodbye everyone bye
+
