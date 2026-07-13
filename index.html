@@ -584,9 +584,10 @@
       state.played[state.currentId] = true;
       // Increment full play count
       state.playCounts[state.currentId] = (state.playCounts[state.currentId] || 0) + 1;
-      // Reset to beginning so next tap plays from start
+      // Reset to beginning so prev/next always starts from 0
       audio.currentTime = 0;
       state.currentTime = 0;
+      state.progress[state.currentId] = 0;
       persistState(true);
       syncTransport();
       if (state.autoNext) playRelative(1, { autoplay: true });
