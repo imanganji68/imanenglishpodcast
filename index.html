@@ -170,9 +170,14 @@
   @keyframes spin{to{transform:rotate(360deg);}}
   .shadow-section{
     border-top:1px solid var(--line);margin-top:10px;padding-top:12px;
-    display:flex;align-items:center;gap:6px;flex-wrap:nowrap;
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    align-items:center;
+    gap:6px;
     width:100%;box-sizing:border-box;
   }
+  .shadow-left{display:flex;align-items:center;gap:5px;justify-content:flex-start;}
+  .shadow-right{display:flex;align-items:center;gap:5px;justify-content:flex-end;}
 
   /* Autoplay toggle button */
   .autoplay-btn{
@@ -196,14 +201,14 @@
   /* Interval pill — flex:2 so it takes proportionally more space */
   .interval-pill{
     background:var(--cream-2);border-radius:999px;
-    padding:6px 8px;display:flex;align-items:center;justify-content:space-between;
-    flex:2;min-width:0;overflow:hidden;
+    padding:5px 6px;display:flex;align-items:center;gap:1px;
+    overflow:hidden;
     opacity:0.4;pointer-events:none;
   }
   .interval-pill.enabled{opacity:1;pointer-events:auto;}
   .int-item{
     font-size:11px;font-weight:600;color:var(--navy-soft);
-    padding:3px 6px;border-radius:999px;white-space:nowrap;background:transparent;
+    padding:3px 5px;border-radius:999px;white-space:nowrap;background:transparent;
     flex:1;text-align:center;
   }
   .int-item.active{background:var(--navy);color:#fff;}
@@ -1175,7 +1180,8 @@
 
   function renderCue(cue, i) {
     const active = i === state.activeCueIndex ? " active" : "";
-    const shadow = state.shadowMode && i === state.shadowCueIndex ? " shadow" : "";
+    const shadowEnd = state.shadowCueIndex + (state.shadowSentCount || 1);
+    const shadow = state.shadowMode && i >= state.shadowCueIndex && i < shadowEnd ? " shadow" : "";
     return [
       `<button class="cue${active}${shadow}" data-action="cue-seek" data-time="${cue.start.toFixed(3)}" data-index="${i}">`,
       `  <div class="cue-time">${fmtT(cue.start)}</div>`,
@@ -1232,13 +1238,11 @@
       '    <button class="tbtn tbtn-skip" data-action="skip-forward">' + ICONS.fwd10 + '<span>10s</span></button>',
       '    <button class="tbtn" data-action="next">' + ICONS.next + '</button>',
       '  </div>',
-      // Shadow row: [autoplay] [S.1 S.2 S.3] [SH] [Record] [Play back]
+      // Shadow row: [autoplay + S.1/2/3] | [SH centre] | [Record + Play back]
       '  <div class="shadow-section">',
-      '    ' + autoBtn,
-      '    ' + sentPill,
+      '    <div class="shadow-left">' + autoBtn + sentPill + '</div>',
       '    ' + shBtn,
-      '    ' + recPill,
-      '    ' + pbPill,
+      '    <div class="shadow-right">' + recPill + pbPill + '</div>',
       '  </div>',
       '</div>'
     ].join("");
