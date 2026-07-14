@@ -174,6 +174,16 @@
     width:100%;box-sizing:border-box;
   }
 
+  /* Autoplay toggle button */
+  .autoplay-btn{
+    width:34px;height:34px;border-radius:50%;flex-shrink:0;
+    background:var(--cream-2);color:var(--navy-soft);
+    display:inline-flex;align-items:center;justify-content:center;
+  }
+  .autoplay-btn .icon{width:15px;height:15px;}
+  .autoplay-btn.active{background:var(--navy);color:#fff;}
+  .autoplay-btn:not(.enabled){opacity:0.4;pointer-events:none;}
+  .autoplay-btn.enabled{opacity:1;pointer-events:auto;}
   /* SH circle — fixed small size */
   .sh-btn{
     width:36px;height:36px;border-radius:50%;flex-shrink:0;
@@ -469,7 +479,8 @@
     activeCueIndex: -1,
     shadowMode: false,
     shadowCueIndex: -1,
-    shadowInterval: "sentence",
+    shadowSentCount: 1,
+    shadowAutoRepeat: false,
     shadowRecording: false,
     shadowLastRecording: null,
     shadowPlayingRec: false,
@@ -525,7 +536,8 @@
       case "cue-seek": seekTo(parseFloat(a.dataset.time) || 0); break;
       case "shadow-toggle": shadowCurrentCue(); break;
       case "shadow-stop": clearShadowMode(); break;
-      case "shadow-interval": state.shadowInterval = a.dataset.val; renderAll(); break;
+      case "shadow-sent-count": state.shadowSentCount = parseInt(a.dataset.val)||1; renderAll(); break;
+      case "shadow-autorepeat": state.shadowAutoRepeat = !state.shadowAutoRepeat; renderAll(); break;
       case "shadow-record": toggleShadowRecording(); break;
       case "shadow-play-rec": playShadowRecording(); break;
       case "go-home": state.view = "home"; renderAll(); break;
@@ -578,7 +590,7 @@
     audio.addEventListener("ended", () => {
       if (state.shadowMode && state.shadowCueIndex >= 0) {
         const cue = getCurrentEpisode()?.cues?.[state.shadowCueIndex];
-        if (cue) { const loopEnd = getShadowEnd(cue); if (audio.currentTime >= loopEnd - 0.1) { audio.currentTime = cue.start; } audio.playbackRate = state.speed; audio.play().catch(()=>{}); return; }
+        if (cue) { if (state.shadowAutoRepeat) { audio.currentTime = cue.start; audio.playbackRate = state.speed; audio.play().catch(()=>{}); } else { audio.currentTime = cue.start; state.currentTime = cue.start; } return; }
       }
       state.playing = false;
       state.played[state.currentId] = true;
@@ -785,8 +797,10 @@
   }
   function getShadowEnd(cue) {
     if (!cue) return 0;
-    if (!state.shadowInterval || state.shadowInterval === "sentence") return cue.end;
-    return cue.start + parseFloat(state.shadowInterval);
+    const ep = getCurrentEpisode();
+    const cues = ep && ep.cues ? ep.cues : [];
+    const endIdx = Math.min(state.shadowCueIndex + (state.shadowSentCount || 1) - 1, cues.length - 1);
+    return (endIdx >= 0 && cues[endIdx]) ? cues[endIdx].end : cue.end;
   }
   function enforceShadowLoop() {
     if (!state.shadowMode || state.shadowCueIndex < 0) return;
@@ -795,7 +809,13 @@
     const loopEnd = getShadowEnd(cue);
     const now = audio.currentTime || 0;
     if (now >= Math.max(cue.start, loopEnd - 0.06)) {
-      audio.currentTime = cue.start; state.currentTime = cue.start;
+      if (state.shadowAutoRepeat) {
+        audio.currentTime = cue.start; state.currentTime = cue.start;
+      } else {
+        // Play once: pause and reset to sentence start
+        audio.pause();
+        audio.currentTime = cue.start; state.currentTime = cue.start;
+      }
     }
   }
 
@@ -1169,31 +1189,32 @@
     const sm  = state.shadowMode;
     const en  = sm ? ' enabled' : '';   // chips enabled only when shadowing
 
-    // Interval items inside single scrollable pill
-    const intItems = ["sentence","10","15","20"].map(function(v) {
-      const label    = v === "sentence" ? "sent." : v + "s";
-      const isActive = (state.shadowInterval || "sentence") === v;
-      return '<button class="int-item' + (isActive && sm ? ' active' : '') + '" data-action="shadow-interval" data-val="' + v + '">' + label + '</button>';
+    // ── S.1 / S.2 / S.3 sentence count pill ──
+    const sentItems = [1,2,3].map(function(n) {
+      const isActive = (state.shadowSentCount || 1) === n;
+      return '<button class="int-item' + (isActive && sm ? ' active' : '') + '" data-action="shadow-sent-count" data-val="' + n + '">S.' + n + '</button>';
     }).join("");
-    const intPill = '<div class="interval-pill' + (sm ? ' enabled' : '') + '">' + intItems + '</div>';
+    const sentPill = '<div class="interval-pill' + (sm ? ' enabled' : '') + '">' + sentItems + '</div>';
 
-    // SH circle button
+    // ── Autoplay toggle ──
+    const autoBtn = '<button class="autoplay-btn' + (sm ? ' enabled' : '') + (state.shadowAutoRepeat ? ' active' : '') + '" data-action="shadow-autorepeat">' + ICONS.refresh + '</button>';
+
+    // ── SH circle (centre) ──
     const shBtn = '<button class="sh-btn' + (sm ? ' active' : '') + '" data-action="shadow-toggle">SH</button>';
 
-    // Record pill
+    // ── Record pill ──
     const recLabel = state.shadowRecording ? 'Stop rec' : 'Record';
     const recPill  = '<button class="shadow-pill' + (sm ? ' enabled' : '') + (state.shadowRecording ? ' rec-active' : '') + '" data-action="shadow-record">'
       + ICONS.mic + ' ' + recLabel + '</button>';
 
-    // Play back pill — enabled only after recording exists
-    const hasRec   = !!state.shadowLastRecording;
+    // ── Play back pill ──
+    const hasRec       = !!state.shadowLastRecording;
     const isPlayingRec = state.shadowPlayingRec;
-    const pbLabel  = isPlayingRec ? 'Playing…' : 'Play back';
-    const pbIcon   = isPlayingRec
+    const pbLabel = isPlayingRec ? 'Playing…' : 'Play back';
+    const pbIcon  = isPlayingRec
       ? '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;border:2px solid currentColor;border-top-color:transparent;animation:spin 0.7s linear infinite;flex-shrink:0;"></span>'
       : ICONS.play;
-    const pbExtra  = isPlayingRec ? ' rec-active' : '';
-    const pbPill   = '<button class="shadow-pill' + (sm && hasRec ? ' enabled' : '') + pbExtra + '" data-action="shadow-play-rec">'
+    const pbPill  = '<button class="shadow-pill' + (sm && hasRec ? ' enabled' : '') + (isPlayingRec ? ' rec-active' : '') + '" data-action="shadow-play-rec">'
       + pbIcon + ' ' + pbLabel + '</button>';
 
     return [
@@ -1211,10 +1232,11 @@
       '    <button class="tbtn tbtn-skip" data-action="skip-forward">' + ICONS.fwd10 + '<span>10s</span></button>',
       '    <button class="tbtn" data-action="next">' + ICONS.next + '</button>',
       '  </div>',
-      // Shadow row: [SH] [interval pill] [Record] [Play back]
+      // Shadow row: [autoplay] [S.1 S.2 S.3] [SH] [Record] [Play back]
       '  <div class="shadow-section">',
+      '    ' + autoBtn,
+      '    ' + sentPill,
       '    ' + shBtn,
-      '    ' + intPill,
       '    ' + recPill,
       '    ' + pbPill,
       '  </div>',
