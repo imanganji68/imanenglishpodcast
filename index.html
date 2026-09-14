@@ -749,12 +749,12 @@
 
   function openCardDraft({ front = "", context = "", episodeId = "", time = 0, editId = null, skipLookup = false }) {
     const trimmedFront = front.trim();
-    const lookupWord = cleanWordForLookup(trimmedFront);
-    const isSingleWord = !skipLookup && !!lookupWord && !/\s/.test(lookupWord);
-    const draft = { front: trimmedFront, context, episodeId, time, back: "", loading: isSingleWord, lookupStatus: null, lookupWord, editId };
+    const lookupTerm = cleanWordForLookup(trimmedFront).trim();
+    const shouldLookup = !skipLookup && !!lookupTerm;
+    const draft = { front: trimmedFront, context, episodeId, time, back: "", loading: shouldLookup, lookupStatus: null, lookupWord: lookupTerm, editId };
     state.cardDraft = draft;
     renderAll();
-    if (isSingleWord) runDictionaryLookup(draft);
+    if (shouldLookup) runDictionaryLookup(draft);
   }
 
   function editCardDefinition(id) {
@@ -774,7 +774,8 @@
     draft.loading = true;
     draft.lookupStatus = null;
     refreshDictStatus();
-    fetchDictionaryDefinition(draft.lookupWord).then(result => {
+    const isPhrase = /\s/.test(draft.lookupWord);
+    fetchDictionaryDefinition(draft.lookupWord, isPhrase).then(result => {
       if (state.cardDraft !== draft) return;
       draft.loading = false;
       draft.lookupStatus = result.status;
@@ -791,7 +792,7 @@
     syncDraftFromDOM();
     const d = state.cardDraft;
     if (!d) return;
-    const lookupWord = cleanWordForLookup(d.front.trim());
+    const lookupWord = cleanWordForLookup(d.front.trim()).trim();
     if (!lookupWord) { showNotice("Add a word first."); return; }
     d.lookupWord = lookupWord;
     runDictionaryLookup(d);
@@ -805,7 +806,7 @@
   function renderDictStatus(d) {
     if (d.loading) return `<div class="dict-status">${ICONS.refresh} Looking up definition…</div>`;
     if (d.lookupStatus === "error") {
-      return `<div class="dict-status dict-status-error">${ICONS.warn} Couldn't reach the dictionary.<button type="button" class="dict-retry" data-action="add-card-retry-lookup">Retry</button></div>`;
+      return `<div class="dict-status dict-status-error">${ICONS.warn} Couldn't reach any dictionary source.<button type="button" class="dict-retry" data-action="add-card-retry-lookup">Retry</button></div>`;
     }
     if (d.lookupStatus === "not-found") {
       return `<div class="dict-status">${ICONS.warn} No dictionary entry found — try the ChatGPT prompt below.</div>`;
@@ -857,9 +858,9 @@
     return fetch(url, { signal: ctrl.signal }).finally(() => clearTimeout(timer));
   }
 
-  async function lookupPrimaryDictionary(word) {
-    // dictionaryapi.dev — free, but occasionally has outages/slow responses.
-    const res = await fetchWithTimeout("https://api.dictionaryapi.dev/api/v2/entries/en/" + encodeURIComponent(word), 7000);
+  async function lookupFreeDictionary(word) {
+    // dictionaryapi.dev — rich (part of speech + example sentences), but has had repeated outages lately.
+    const res = await fetchWithTimeout("https://api.dictionaryapi.dev/api/v2/entries/en/" + encodeURIComponent(word), 5500);
     if (res.status === 404) return { status: "not-found" };
     if (!res.ok) throw new Error("bad status " + res.status);
     const data = await res.json();
@@ -875,9 +876,29 @@
     return lines.length ? { status: "ok", text: lines.join("\n") } : { status: "not-found" };
   }
 
-  async function lookupFallbackDictionary(word) {
-    // Wiktionary REST API — different infrastructure, used if the primary source is down.
-    const res = await fetchWithTimeout("https://en.wiktionary.org/api/rest_v1/page/definition/" + encodeURIComponent(word), 7000);
+  async function lookupDatamuse(word) {
+    // Datamuse (WordNet + Wiktionary backed) — separate infrastructure from dictionaryapi.dev,
+    // historically very reliable, so it's raced in parallel rather than used only as a last resort.
+    const res = await fetchWithTimeout("https://api.datamuse.com/words?sp=" + encodeURIComponent(word) + "&md=d&max=1", 5500);
+    if (!res.ok) throw new Error("bad status " + res.status);
+    const data = await res.json();
+    const entry = Array.isArray(data) ? data.find(d => d.word && d.word.toLowerCase() === word) : null;
+    if (!entry || !Array.isArray(entry.defs) || !entry.defs.length) return { status: "not-found" };
+    const posMap = { n: "noun", v: "verb", adj: "adjective", adv: "adverb", u: "" };
+    const lines = entry.defs.slice(0, 3).map(d => {
+      const tab = d.indexOf("\t");
+      if (tab === -1) return d;
+      const pos = posMap[d.slice(0, tab)] ?? d.slice(0, tab);
+      const text = d.slice(tab + 1);
+      return pos ? `(${pos}) ${text}` : text;
+    });
+    return { status: "ok", text: lines.join("\n") };
+  }
+
+  async function lookupWiktionary(term) {
+    // Wiktionary REST API — the only one of the three that reliably covers multi-word
+    // phrases and idioms (e.g. "break the ice"), so it's used for phrase lookups too.
+    const res = await fetchWithTimeout("https://en.wiktionary.org/api/rest_v1/page/definition/" + encodeURIComponent(term.replace(/\s+/g, "_")), 6000);
     if (res.status === 404) return { status: "not-found" };
     if (!res.ok) throw new Error("bad status " + res.status);
     const data = await res.json();
@@ -892,19 +913,34 @@
     return lines.length ? { status: "ok", text: lines.join("\n") } : { status: "not-found" };
   }
 
-  async function fetchDictionaryDefinition(word) {
-    const w = word.toLowerCase();
-    let sawNotFound = false;
+  async function fetchDictionaryDefinition(term, isPhrase) {
+    const w = term.toLowerCase();
+
+    if (isPhrase) {
+      // Single-word sources don't cover phrases well — go straight to Wiktionary,
+      // which indexes idioms and set phrases.
+      try {
+        const r = await lookupWiktionary(w);
+        return r;
+      } catch (e) {
+        return { status: "error" };
+      }
+    }
+
+    // Race two independent, unrelated sources for single words — whichever answers first wins,
+    // so a slow/down source no longer stalls the whole lookup.
+    const results = await Promise.allSettled([lookupFreeDictionary(w), lookupDatamuse(w)]);
+    const ok = results.find(r => r.status === "fulfilled" && r.value.status === "ok");
+    if (ok) return ok.value;
+    const sawNotFound = results.some(r => r.status === "fulfilled" && r.value.status === "not-found");
+
+    // Both single-word sources missed — try Wiktionary as a last resort before giving up.
     try {
-      const r = await lookupPrimaryDictionary(w);
+      const r = await lookupWiktionary(w);
       if (r.status === "ok") return r;
-      if (r.status === "not-found") sawNotFound = true;
-    } catch (e) { /* network/timeout — fall through to backup source */ }
-    try {
-      const r = await lookupFallbackDictionary(w);
-      if (r.status === "ok") return r;
-      if (r.status === "not-found") sawNotFound = true;
-    } catch (e) { /* both sources unreachable */ }
+      if (r.status === "not-found") return { status: "not-found" };
+    } catch (e) { /* all three sources unreachable */ }
+
     return { status: sawNotFound ? "not-found" : "error" };
   }
 
