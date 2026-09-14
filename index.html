@@ -373,12 +373,10 @@
   .dict-status{font-size:12px;color:var(--muted);margin-top:6px;display:flex;align-items:center;gap:6px;}
 
   /* ---------- Flashcards page ---------- */
-  .flash-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 14px;}
-  .flash-stat{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:11px 10px;text-align:center;}
-  .flash-stat .n{font-size:21px;font-weight:800;color:var(--navy);}
-  .flash-stat .l{font-size:10.5px;color:var(--muted);margin-top:2px;}
-  .flash-flow{background:var(--cream-2);border:1px solid var(--line);border-radius:13px;padding:11px 13px;margin-bottom:14px;color:var(--navy-soft);font-size:12px;line-height:1.5;}
-  .flash-flow b{color:var(--navy);}
+  .flash-stats{display:flex;gap:10px;margin-bottom:4px;}
+  .flash-stat{flex:1;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:12px 14px;}
+  .flash-stat .n{font-size:22px;font-weight:700;}
+  .flash-stat .l{font-size:11.5px;color:var(--muted);margin-top:1px;}
   .flash-empty{text-align:center;padding:48px 20px;color:var(--muted);}
   .flash-empty .icon{width:36px;height:36px;color:#cbd5e1;display:block;margin:0 auto 10px;}
 
@@ -398,24 +396,37 @@
   .flash-context button .icon{width:11px;height:11px;color:var(--gold);}
   .flash-hint{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;}
   .rate-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;margin-bottom:6px;}
-  .rate-btn{padding:10px 0;border-radius:10px;font-size:12px;font-weight:700;}
+  .rate-btn{padding:10px 0;border-radius:10px;font-size:12px;font-weight:600;}
   .rate-again{background:var(--gold-soft);color:var(--danger);}
   .rate-hard{background:var(--gold-soft);color:var(--gold);}
   .rate-good{background:var(--green-soft);color:var(--green);}
   .rate-easy{background:var(--purple-soft);color:var(--purple);}
   .flash-meta-row{display:flex;justify-content:space-between;align-items:center;padding:0 2px;margin-bottom:14px;gap:10px;}
-  .flash-meta-row span{font-size:11px;color:var(--muted);line-height:1.45;}
-  .flash-delete{
-    flex:0 0 auto;padding:7px 12px;border:1px solid var(--danger);border-radius:9px;
-    background:transparent;color:var(--danger);font-size:12px;font-weight:800;text-decoration:none;
-  }
-  .flash-delete:hover{background:var(--danger);color:#fff;}
-  .dict-panel{
-    width:100%;box-sizing:border-box;margin-top:6px;padding:11px 12px;border-radius:11px;
-    background:var(--card);border:1px solid var(--line);text-align:left;font-size:12px;
-    line-height:1.55;color:var(--navy-soft);white-space:pre-line;
-  }
-  .dict-panel-label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;font-weight:800;color:var(--navy);margin-bottom:4px;}
+  .flash-meta-row span{font-size:11px;color:var(--muted);}
+  .flash-delete-btn{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:#fff;background:var(--danger);padding:7px 14px;border-radius:10px;box-shadow:0 2px 6px rgba(179,73,47,0.3);flex-shrink:0;}
+  .flash-delete-btn .icon{width:13px;height:13px;stroke:#fff;}
+  .flash-delete-btn:active{opacity:0.85;}
+
+  /* ---------- Dictionary panel ---------- */
+  .dict-panel{width:100%;text-align:left;background:var(--blue-soft);border:1px solid var(--blue-line);border-radius:var(--radius-sm);padding:12px 14px;margin-top:4px;font-size:13px;line-height:1.6;color:var(--navy-soft);white-space:pre-line;}
+  .dict-panel-label{display:flex;align-items:center;justify-content:space-between;font-size:10.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--blue);margin-bottom:6px;gap:8px;}
+  .dict-lang-select{font-size:11px;border:1px solid var(--blue-line);border-radius:7px;padding:2px 6px;background:#fff;color:var(--navy);text-transform:none;letter-spacing:normal;font-weight:600;}
+
+  /* ---------- Review flow ---------- */
+  .review-intro{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--gold-line);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:14px;gap:12px;}
+  .review-intro-text{font-size:13px;color:var(--navy-soft);font-weight:600;}
+  .review-start-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:var(--navy);color:#fff;font-size:13px;font-weight:700;padding:10px 16px;border-radius:11px;white-space:nowrap;}
+  .review-start-btn .icon{width:14px;height:14px;stroke:#fff;}
+  .review-progress-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+  .review-progress-row span{font-size:12.5px;font-weight:700;color:var(--navy-soft);}
+  .review-exit-btn{width:28px;height:28px;border-radius:50%;background:var(--card);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;}
+  .review-exit-btn .icon{width:14px;height:14px;color:var(--navy-soft);}
+  .review-progress-track{height:6px;border-radius:4px;background:var(--line);margin-bottom:16px;overflow:hidden;}
+  .review-progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width 0.25s ease;}
+  .review-done{text-align:center;padding:48px 20px;}
+  .review-done .icon{width:40px;height:40px;color:var(--green);margin:0 auto 12px;display:block;}
+  .review-done h2{font-size:19px;margin:0 0 6px;}
+  .review-done p{color:var(--muted);font-size:13px;margin:0 0 18px;}
 </style>
 </head>
 <body>
@@ -468,6 +479,23 @@
   const LEVEL_PREFIX = { elementary:"E", intermediate:"I", upper_intermediate:"UI", advanced:"A" };
   const levelOrder = ["elementary","intermediate","upper_intermediate","advanced"];
 
+  const TRANSLATE_LANGS = [
+    { code:"fa", label:"Persian" },
+    { code:"es", label:"Spanish" },
+    { code:"fr", label:"French" },
+    { code:"de", label:"German" },
+    { code:"pt", label:"Portuguese" },
+    { code:"it", label:"Italian" },
+    { code:"tr", label:"Turkish" },
+    { code:"ar", label:"Arabic" },
+    { code:"ru", label:"Russian" },
+    { code:"zh-CN", label:"Chinese (Simplified)" },
+    { code:"ja", label:"Japanese" },
+    { code:"ko", label:"Korean" },
+    { code:"hi", label:"Hindi" }
+  ];
+  const DICT_LANG_KEY = "iman-english-podcast-dict-lang";
+
   const episodes = (window.IMAN_EPISODES || []).map((ep, index) => ({
     ...ep, index,
     cues: [], cuesLoaded:false, cuesLoading:false, cuesError:false, cuesPromise:null
@@ -507,8 +535,15 @@
     flashTab: "due",
     flashFlipped: {},
     cardDraft: null,
-    dictResults: null,
-    dictLoading: null
+    dictCache: {},
+    review: null,
+    dictLang: (function(){
+      try {
+        const saved = localStorage.getItem(DICT_LANG_KEY);
+        if (saved && TRANSLATE_LANGS.some(l => l.code === saved)) return saved;
+      } catch(e) {}
+      return "fa";
+    })()
   };
 
   const ui = {};
@@ -521,9 +556,16 @@
   renderAll();
 
   app.addEventListener("click", onClick);
+  app.addEventListener("change", onChange);
   window.addEventListener("beforeunload", persistState);
   window.addEventListener("keydown", onKeyDown);
   setupSelectionWatcher();
+
+  function onChange(e) {
+    const el = e.target.closest("[data-action-change]");
+    if (!el) return;
+    if (el.dataset.actionChange === "set-dict-lang") setDictLang(el.value);
+  }
 
   // ===================== Event handling =====================
   function onClick(e) {
@@ -553,8 +595,9 @@
       case "shadow-play-rec": playShadowRecording(); break;
       case "go-home": state.view = "home"; renderAll(); break;
       case "add-card-from-selection": addCardFromSelection(); break;
-      case "add-card-manual": addCardManual(); break;
       case "add-card-cancel": closeCardDraft(); break;
+      case "start-review": startReview(); break;
+      case "exit-review": exitReview(); break;
       case "add-card-backdrop":
         if (!e.target.closest(".sheet")) closeCardDraft();
         break;
@@ -875,22 +918,24 @@
     openCardDraft({ front: text, context, episodeId, time });
   }
 
-  function addCardManual() { openCardDraft({}); }
-
-  function cleanLookupText(s) {
-    return String(s || "").replace(/\s+/g, " ").trim().replace(/^[“”"'`]+|[“”"'`]+$/g, "");
+  function cleanWordForLookup(s) {
+    return s.replace(/^[^a-zA-Z']+|[^a-zA-Z']+$/g, "");
   }
 
   function openCardDraft({ front = "", context = "", episodeId = "", time = 0 }) {
-    const trimmedFront = cleanLookupText(front);
+    const trimmedFront = front.trim();
     const draft = { front: trimmedFront, context, episodeId, time, back: "", loading: !!trimmedFront };
     state.cardDraft = draft;
     renderAll();
     if (trimmedFront) {
-      fetchCardMeaning(trimmedFront, context).then(result => {
+      fetchWordMeaning(trimmedFront, state.dictLang).then(result => {
         if (state.cardDraft !== draft) return;
         draft.loading = false;
-        draft.back = result || "";
+        if (result) {
+          draft.back = result;
+          const ta = document.getElementById("draft-back");
+          if (ta && !ta.value.trim()) ta.value = result;
+        }
         renderAll();
       });
     }
@@ -915,7 +960,7 @@
     state.flashcards.push({
       id: uid(), front, back,
       context: d.context || "", contextEpisodeId: d.episodeId || "", contextTime: d.time || 0,
-      ef: 2.5, iv: 1, rp: 0, due: Date.now(), createdAt: Date.now(), lastReviewedAt: null
+      ef: 2.5, iv: 1, rp: 0, reviewCount: 0, due: Date.now(), createdAt: Date.now()
     });
     persistState();
     state.cardDraft = null;
@@ -923,7 +968,31 @@
     showNotice(`Saved "${front}" to Flashcards.`);
   }
 
-  async function fetchDictionaryDefinition(word) {
+  function stripHtmlTags(html) {
+    return String(html || "")
+      .replace(/<[^>]+>/g, "")
+      .replace(/&amp;/g, "&").replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+      .trim();
+  }
+
+  async function translateText(text, targetLang) {
+    // MyMemory's translation-memory API is free, needs no key, and (unlike Google
+    // Translate's unofficial endpoint) actually sends CORS headers so it works
+    // reliably from a browser fetch.
+    try {
+      const short = text.length > 480 ? text.slice(0, 480) : text;
+      const url = "https://api.mymemory.translated.net/get?q=" + encodeURIComponent(short) +
+        "&langpair=en|" + encodeURIComponent(targetLang);
+      const res = await fetch(url);
+      if (!res.ok) return null;
+      const data = await res.json();
+      if (!data || data.responseStatus !== 200) return null;
+      const out = ((data.responseData && data.responseData.translatedText) || "").trim();
+      return out || null;
+    } catch (e) { return null; }
+  }
+
+  async function fetchEnglishDefinition(word) {
     try {
       const res = await fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + encodeURIComponent(word.toLowerCase()));
       if (!res.ok) return null;
@@ -931,52 +1000,57 @@
       const entry = data[0];
       if (!entry || !Array.isArray(entry.meanings)) return null;
       const lines = [];
-      entry.meanings.slice(0, 3).forEach(m => {
+      entry.meanings.slice(0, 2).forEach(m => {
         const def = m.definitions && m.definitions[0];
         if (!def) return;
-        lines.push(`(${m.partOfSpeech || "meaning"}) ${def.definition}`);
+        lines.push(`(${m.partOfSpeech}) ${def.definition}`);
         if (def.example) lines.push(`Example: "${def.example}"`);
       });
       return lines.length ? lines.join("\n") : null;
     } catch (e) { return null; }
   }
 
-  async function fetchTranslation(text) {
+  async function fetchWiktionaryDefinition(term) {
     try {
-      const url = "https://api.mymemory.translated.net/get?q=" + encodeURIComponent(text) + "&langpair=en|fa";
-      const res = await fetch(url);
+      const title = term.trim().replace(/\s+/g, "_");
+      const res = await fetch("https://en.wiktionary.org/api/rest_v1/page/definition/" + encodeURIComponent(title));
       if (!res.ok) return null;
       const data = await res.json();
-      const translated = data?.responseData?.translatedText;
-      if (!translated || translated.toLowerCase() === text.toLowerCase()) return null;
-      return translated;
+      const entries = data && data.en;
+      if (!Array.isArray(entries) || !entries.length) return null;
+      const lines = [];
+      entries.slice(0, 2).forEach(e => {
+        const def = e.definitions && e.definitions[0];
+        if (!def || !def.definition) return;
+        lines.push(`(${e.partOfSpeech || "phrase"}) ${stripHtmlTags(def.definition)}`);
+      });
+      return lines.length ? lines.join("\n") : null;
     } catch (e) { return null; }
   }
 
-  async function fetchCardMeaning(text, context = "") {
-    const clean = cleanLookupText(text);
+  // Looks up a word or phrase: a translation into the chosen language (via Google
+  // Translate) plus, when available, an English definition (dictionaryapi.dev for
+  // single words, Wiktionary as a fallback and for multi-word phrases/idioms).
+  async function fetchWordMeaning(term, targetLang) {
+    const clean = (term || "").trim();
     if (!clean) return null;
-
-    const isSingleWord = !/\s/.test(clean);
-    let definition = null;
-
-    if (isSingleWord) {
-      definition = await fetchDictionaryDefinition(clean);
+    const lookupWord = cleanWordForLookup(clean);
+    const isSingleWord = !!lookupWord && !/\s/.test(lookupWord);
+    const [translation, primaryEnglish] = await Promise.all([
+      translateText(clean, targetLang || "fa"),
+      isSingleWord ? fetchEnglishDefinition(lookupWord) : fetchWiktionaryDefinition(clean)
+    ]);
+    let english = primaryEnglish;
+    if (!english) {
+      english = isSingleWord ? await fetchWiktionaryDefinition(lookupWord) : null;
     }
-
-    const translation = await fetchTranslation(clean);
-
-    if (definition && translation) {
-      return `${definition}\n\nPersian meaning: ${translation}`;
+    const parts = [];
+    const langLabel = (TRANSLATE_LANGS.find(l => l.code === targetLang) || {}).label || targetLang;
+    if (translation && translation.trim().toLowerCase() !== clean.toLowerCase()) {
+      parts.push(`\u{1F310} ${langLabel}: ${translation}`);
     }
-    if (definition) return definition;
-    if (translation) return `Persian meaning: ${translation}`;
-
-    if (context && context !== clean) {
-      const contextualTranslation = await fetchTranslation(context);
-      if (contextualTranslation) return `Persian meaning in context: ${contextualTranslation}`;
-    }
-    return null;
+    if (english) parts.push(english);
+    return parts.length ? parts.join("\n\n") : null;
   }
 
   function buildChatGptPrompt(front, context) {
@@ -1016,38 +1090,81 @@
   function setFlashTab(tab) { state.flashTab = tab; renderAll(); }
   function toggleFlashFlip(id) {
     state.flashFlipped[id] = !state.flashFlipped[id];
-    state.dictResults = null;
-    state.dictLoading = null;
-
     if (state.flashFlipped[id]) {
       const card = state.flashcards.find(c => c.id === id);
-      if (card && !String(card.back || "").trim()) {
-        state.dictLoading = id;
+      if (card && state.dictCache[id] === undefined) {
+        state.dictCache[id] = "loading";
         renderAll();
-        fetchCardMeaning(card.front, card.context || "").then(result => {
-          state.dictResults = result || "No automatic meaning was found. You can delete this card and add it again, or edit its meaning.";
-          state.dictLoading = null;
+        fetchWordMeaning(card.front, state.dictLang).then(result => {
+          state.dictCache[id] = result || "No dictionary entry found.";
           renderAll();
         });
-        return;
       }
+    }
+    renderAll();
+  }
+  function setDictLang(lang) {
+    if (!lang || lang === state.dictLang) return;
+    state.dictLang = lang;
+    try { localStorage.setItem(DICT_LANG_KEY, lang); } catch (e) {}
+    const flippedIds = Object.keys(state.flashFlipped).filter(id => state.flashFlipped[id]);
+    state.dictCache = {};
+    flippedIds.forEach(id => {
+      const card = state.flashcards.find(c => c.id === id);
+      if (!card) return;
+      state.dictCache[id] = "loading";
+      fetchWordMeaning(card.front, lang).then(result => {
+        state.dictCache[id] = result || "No dictionary entry found.";
+        renderAll();
+      });
+    });
+    if (state.cardDraft) {
+      const draft = state.cardDraft;
+      draft.loading = true;
+      fetchWordMeaning(draft.front, lang).then(result => {
+        if (state.cardDraft !== draft) return;
+        draft.loading = false;
+        if (result) {
+          draft.back = result;
+          const ta = document.getElementById("draft-back");
+          if (ta) ta.value = result;
+        }
+        renderAll();
+      });
     }
     renderAll();
   }
   function rateFlashcard(id, q) {
     const c = state.flashcards.find(c => c.id === id);
     if (!c) return;
-    const reviewedAt = Date.now();
-    Object.assign(c, sm2(c, q), { lastReviewedAt: reviewedAt });
-    state.dictResults = null;
-    state.dictLoading = null;
+    Object.assign(c, sm2(c, q));
+    c.reviewCount = (c.reviewCount || 0) + 1;
     state.flashFlipped[id] = false;
+    if (state.review && !state.review.done) {
+      state.review.pos++;
+      if (state.review.pos >= state.review.queue.length) state.review.done = true;
+    }
     persistState(); renderAll();
   }
   function deleteFlashcard(id) {
     state.flashcards = state.flashcards.filter(c => c.id !== id);
     delete state.flashFlipped[id];
+    delete state.dictCache[id];
+    if (state.review) {
+      state.review.queue = state.review.queue.filter(qid => qid !== id);
+      if (state.review.pos >= state.review.queue.length) state.review.done = true;
+    }
     persistState(); renderAll();
+  }
+  function startReview() {
+    const due = state.flashcards.filter(c => c.due <= Date.now());
+    if (!due.length) return;
+    state.review = { queue: due.map(c => c.id), pos: 0, done: false };
+    renderAll();
+  }
+  function exitReview() {
+    state.review = null;
+    renderAll();
   }
 
   function ensureSource(ep, opts = {}) {
@@ -1332,55 +1449,58 @@
     ].join("");
   }
 
-  function formatReviewDate(ts) {
-    if (!ts) return "Not scheduled";
-    const d = new Date(ts);
-    const today = new Date();
-    const tomorrow = new Date();
-    tomorrow.setDate(today.getDate() + 1);
-    if (d.toDateString() === today.toDateString()) return "Today";
-    if (d.toDateString() === tomorrow.toDateString()) return "Tomorrow";
-    return d.toLocaleDateString(undefined, { month:"short", day:"numeric", year:"numeric" });
-  }
-
-  function reviewIntervalLabel(days) {
-    const n = Number(days) || 0;
-    if (n < 1) return "today";
-    if (n === 1) return "1 day";
-    if (n < 30) return `${Math.round(n)} days`;
-    if (n < 365) return `${Math.round(n / 30)} months`;
-    return `${Math.round(n / 365)} years`;
-  }
-
-  function getNextIntervalPreview(c, q) {
-    const result = sm2(c, q);
-    return q < 3 ? "Today" : reviewIntervalLabel(result.iv);
-  }
-
   function renderFlashcards() {
     const all = state.flashcards;
     const due = all.filter(c => c.due <= Date.now());
-    const reviewed = all.filter(c => (Number(c.rp) || 0) > 0);
-    const shown = state.flashTab === "due" ? due : all;
+    const totalReviews = all.reduce((sum, c) => sum + (c.reviewCount || 0), 0);
 
+    if (state.flashTab === "due" && state.review) {
+      return renderReviewSession();
+    }
+
+    const shown = state.flashTab === "due" ? due : all;
     return [
       '<div class="lib-pad">',
-      '  <div class="lib-head">',
-      '    <h1>Flashcards</h1>',
-      '    <p>Review, rate, and build long-term memory.</p>',
+      '  <div class="lib-head" style="display:flex;justify-content:space-between;align-items:flex-end;">',
+      '    <div><h1>Flashcards</h1><p>' + due.length + ' due &middot; ' + all.length + ' total &middot; ' + totalReviews + ' review' + (totalReviews===1?'':'s') + '</p></div>',
       '  </div>',
-      '  <div class="flash-stats">',
-      `    <div class="flash-stat"><div class="n">${due.length}</div><div class="l">Due now</div></div>`,
-      `    <div class="flash-stat"><div class="n">${all.length}</div><div class="l">Total cards</div></div>`,
-      `    <div class="flash-stat"><div class="n">${reviewed.length}</div><div class="l">Reviewed</div></div>`,
-      '  </div>',
-      '  <div class="flash-flow"><b>Review flow:</b> tap a card → reveal the meaning → choose <b>Again</b>, <b>Hard</b>, <b>Good</b>, or <b>Easy</b>. The next review date is calculated automatically.</div>',
       '  <div style="display:flex;background:var(--card);border:1px solid var(--line);border-radius:11px;padding:3px;margin-bottom:14px;">',
       `    <button data-action="flash-tab" data-tab="due" style="flex:1;padding:8px;border-radius:8px;font-size:12.5px;font-weight:600;background:${state.flashTab==='due'?'var(--navy)':'transparent'};color:${state.flashTab==='due'?'#fff':'var(--navy-soft)'};">Due (${due.length})</button>`,
       `    <button data-action="flash-tab" data-tab="all" style="flex:1;padding:8px;border-radius:8px;font-size:12.5px;font-weight:600;background:${state.flashTab==='all'?'var(--navy)':'transparent'};color:${state.flashTab==='all'?'#fff':'var(--navy-soft)'};">All (${all.length})</button>`,
       '  </div>',
+      (state.flashTab === "due" && due.length > 0) ? renderReviewIntro(due.length) : '',
       shown.length === 0 ? renderFlashEmpty() : shown.map(c => renderFlashCard(c)).join(""),
-      '  <div style="height:30px;"></div>',
+      '  <div style="height:70px;"></div>',
+      '</div>'
+    ].join("");
+  }
+
+  function renderReviewIntro(count) {
+    return `<div class="review-intro"><div class="review-intro-text">${count} card${count===1?'':'s'} ready for review.</div><button class="review-start-btn" data-action="start-review">${ICONS.play} Start Review</button></div>`;
+  }
+
+  function renderReviewSession() {
+    const r = state.review;
+    if (r.done) {
+      return [
+        '<div class="lib-pad">',
+        `  <div class="review-done">${ICONS.check}<h2>Review complete</h2><p>You reviewed ${r.queue.length} card${r.queue.length===1?'':'s'}.</p>`,
+        `    <button class="review-start-btn" data-action="exit-review">Back to Flashcards</button>`,
+        '  </div>',
+        '</div>'
+      ].join("");
+    }
+    const id = r.queue[r.pos];
+    const card = state.flashcards.find(c => c.id === id);
+    if (!card) {
+      state.review = null;
+      return renderFlashcards();
+    }
+    return [
+      '<div class="lib-pad">',
+      `  <div class="review-progress-row"><span>Card ${r.pos+1} of ${r.queue.length}</span><button class="review-exit-btn" data-action="exit-review">${ICONS.x}</button></div>`,
+      `  <div class="review-progress-track"><div class="review-progress-fill" style="width:${Math.round((r.pos/r.queue.length)*100)}%;"></div></div>`,
+      renderFlashCard(card),
       '</div>'
     ].join("");
   }
@@ -1389,21 +1509,33 @@
     if (state.flashTab === "due" && state.flashcards.length > 0) {
       return `<div class="flash-empty">${ICONS.check}<div>All caught up — nothing due right now.</div></div>`;
     }
-    return `<div class="flash-empty">${ICONS.layers}<div>No flashcards yet.<br>Select a word or phrase in a transcript to add it to your Flashcards.</div></div>`;
+    return `<div class="flash-empty">${ICONS.layers}<div>No flashcards yet.<br>Select a word or phrase in any transcript while listening to add one.</div></div>`;
+  }
+
+  function renderDictLangSelect() {
+    return `<select class="dict-lang-select" data-action-change="set-dict-lang" onclick="event.stopPropagation()">${
+      TRANSLATE_LANGS.map(l => `<option value="${l.code}"${l.code===state.dictLang?' selected':''}>${l.label}</option>`).join("")
+    }</select>`;
+  }
+
+  function renderDictPanel(id) {
+    const val = state.dictCache[id];
+    if (val === undefined) return '';
+    if (val === "loading") {
+      return `<div class="dict-panel" onclick="event.stopPropagation()"><div class="dict-panel-label"><span>Dictionary</span>${renderDictLangSelect()}</div><span style="color:var(--muted);">Looking up…</span></div>`;
+    }
+    return `<div class="dict-panel" onclick="event.stopPropagation()"><div class="dict-panel-label"><span>Dictionary</span>${renderDictLangSelect()}</div>${esc(val)}</div>`;
   }
 
   function renderFlashCard(c) {
     const flipped = !!state.flashFlipped[c.id];
     const due = c.due <= Date.now();
-    const reviews = Number(c.rp) || 0;
-    const next = due ? "Due now" : `Next review: ${formatReviewDate(c.due)}`;
     return [
       `<div class="flash-card${flipped?' flipped':''}" data-action="flash-flip" data-id="${escAttr(c.id)}">`,
       flipped ? [
-        `<div class="flash-back">${esc(c.back || "(meaning not saved — looking it up…")}</div>`,
+        `<div class="flash-back">${esc(c.back || "(no definition saved)")}</div>`,
         c.context ? `<div class="flash-context"><button data-action="play-context" data-episode="${escAttr(c.contextEpisodeId||'')}" data-time="${c.contextTime||0}" onclick="event.stopPropagation()">${ICONS.play}</button> "${esc(c.context)}"</div>` : '',
-        state.dictLoading === c.id ? `<div class="dict-panel"><div class="dict-panel-label">Meaning</div><span style="color:var(--muted);">Looking up…</span></div>` : '',
-        (state.dictResults && state.dictLoading !== c.id) ? `<div class="dict-panel" onclick="event.stopPropagation()"><div class="dict-panel-label">Meaning / Translation</div>${esc(state.dictResults)}</div>` : ''
+        renderDictPanel(c.id)
       ].join("") : [
         `<div class="flash-front">${esc(c.front)}</div>`,
         `<div class="flash-hint">Tap to reveal</div>`
@@ -1411,12 +1543,12 @@
       '</div>',
       flipped ? [
         '<div class="rate-row">',
-        `  <button class="rate-btn rate-again" data-action="flash-rate" data-id="${escAttr(c.id)}" data-q="1">Again<br><small>${getNextIntervalPreview(c,1)}</small></button>`,
-        `  <button class="rate-btn rate-hard" data-action="flash-rate" data-id="${escAttr(c.id)}" data-q="3">Hard<br><small>${getNextIntervalPreview(c,3)}</small></button>`,
-        `  <button class="rate-btn rate-good" data-action="flash-rate" data-id="${escAttr(c.id)}" data-q="4">Good<br><small>${getNextIntervalPreview(c,4)}</small></button>`,
-        `  <button class="rate-btn rate-easy" data-action="flash-rate" data-id="${escAttr(c.id)}" data-q="5">Easy<br><small>${getNextIntervalPreview(c,5)}</small></button>`,
+        `  <button class="rate-btn rate-again" data-action="flash-rate" data-id="${escAttr(c.id)}" data-q="1">Again</button>`,
+        `  <button class="rate-btn rate-hard" data-action="flash-rate" data-id="${escAttr(c.id)}" data-q="3">Hard</button>`,
+        `  <button class="rate-btn rate-good" data-action="flash-rate" data-id="${escAttr(c.id)}" data-q="4">Good</button>`,
+        `  <button class="rate-btn rate-easy" data-action="flash-rate" data-id="${escAttr(c.id)}" data-q="5">Easy</button>`,
         '</div>',
-        `<div class="flash-meta-row"><span>${reviews === 0 ? 'New card' : `Reviews: ${reviews}`} · ${next}</span><button class="flash-delete" data-action="flash-delete" data-id="${escAttr(c.id)}" onclick="event.stopPropagation()">Delete</button></div>`
+        `<div class="flash-meta-row"><span>${(c.reviewCount||0) ? 'Reviewed ' + c.reviewCount + 'x' : 'New card'}${due ? '' : ' &middot; due ' + new Date(c.due).toLocaleDateString()}</span><button class="flash-delete-btn" data-action="flash-delete" data-id="${escAttr(c.id)}" onclick="event.stopPropagation()">${ICONS.trash} Delete</button></div>`
       ].join("") : ''
     ].join("");
   }
@@ -1433,11 +1565,13 @@
         '<label>From this sentence</label>',
         `<div class="context-quote"><button data-action="play-context" data-episode="${escAttr(d.episodeId||'')}" data-time="${d.time||0}">${ICONS.play}</button><span>"${esc(d.context)}"</span></div>`
       ].join("") : "",
-      '    <label>Meaning &amp; examples</label>',
-      `    <textarea id="draft-back" placeholder="Meaning or translation will be looked up automatically. You can edit it before saving.">${esc(d.back)}</textarea>`,
-      d.loading ? `<div class="dict-status">${ICONS.refresh} Looking up meaning…</div>` : "",
-      !d.loading && !d.back ? `<div class="dict-status">No automatic meaning found. You can enter one manually.</div>` : "",
-      '<div class="dict-status">Words use an English dictionary first; phrases and fallback lookups use English → Persian translation.</div>',
+      `    <label style="display:flex;justify-content:space-between;align-items:center;">Definition &amp; examples${renderDictLangSelect()}</label>`,
+      `    <textarea id="draft-back" placeholder="Auto-looked-up definitions appear here, or paste ChatGPT's answer.">${esc(d.back)}</textarea>`,
+      d.loading ? `<div class="dict-status">${ICONS.refresh} Looking up definition…</div>` : "",
+      '    <div class="chatgpt-row">',
+      `      <button class="btn-soft" data-action="add-card-copy-prompt">${ICONS.copy} Copy ChatGPT prompt</button>`,
+      `      <button class="btn-soft" data-action="add-card-open-chatgpt">${ICONS.external} Open ChatGPT</button>`,
+      '    </div>',
       '    <div class="sheet-actions">',
       `      <button class="sheet-cancel" data-action="add-card-cancel">Cancel</button>`,
       `      <button class="sheet-save" data-action="add-card-save">Save card</button>`,
@@ -1620,14 +1754,7 @@
           progress: p.progress && typeof p.progress === "object" ? p.progress : {},
           played: p.played && typeof p.played === "object" ? p.played : {},
           playCounts: p.playCounts && typeof p.playCounts === "object" ? p.playCounts : {},
-          flashcards: Array.isArray(p.flashcards) ? p.flashcards.map(c => ({
-            ...c,
-            rp: Number(c.rp) || 0,
-            iv: Number(c.iv) || 1,
-            ef: Number(c.ef) || 2.5,
-            due: Number(c.due) || Date.now(),
-            lastReviewedAt: c.lastReviewedAt || null
-          })) : []
+          flashcards: Array.isArray(p.flashcards) ? p.flashcards : []
         });
       }
     } catch(e) {}
