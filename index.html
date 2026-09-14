@@ -373,10 +373,12 @@
   .dict-status{font-size:12px;color:var(--muted);margin-top:6px;display:flex;align-items:center;gap:6px;}
 
   /* ---------- Flashcards page ---------- */
-  .flash-stats{display:flex;gap:10px;margin-bottom:4px;}
-  .flash-stat{flex:1;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:12px 14px;}
-  .flash-stat .n{font-size:22px;font-weight:700;}
-  .flash-stat .l{font-size:11.5px;color:var(--muted);margin-top:1px;}
+  .flash-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 14px;}
+  .flash-stat{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:11px 10px;text-align:center;}
+  .flash-stat .n{font-size:21px;font-weight:800;color:var(--navy);}
+  .flash-stat .l{font-size:10.5px;color:var(--muted);margin-top:2px;}
+  .flash-flow{background:var(--cream-2);border:1px solid var(--line);border-radius:13px;padding:11px 13px;margin-bottom:14px;color:var(--navy-soft);font-size:12px;line-height:1.5;}
+  .flash-flow b{color:var(--navy);}
   .flash-empty{text-align:center;padding:48px 20px;color:var(--muted);}
   .flash-empty .icon{width:36px;height:36px;color:#cbd5e1;display:block;margin:0 auto 10px;}
 
@@ -396,20 +398,24 @@
   .flash-context button .icon{width:11px;height:11px;color:var(--gold);}
   .flash-hint{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;}
   .rate-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;margin-bottom:6px;}
-  .rate-btn{padding:10px 0;border-radius:10px;font-size:12px;font-weight:600;}
+  .rate-btn{padding:10px 0;border-radius:10px;font-size:12px;font-weight:700;}
   .rate-again{background:var(--gold-soft);color:var(--danger);}
   .rate-hard{background:var(--gold-soft);color:var(--gold);}
   .rate-good{background:var(--green-soft);color:var(--green);}
   .rate-easy{background:var(--purple-soft);color:var(--purple);}
-  .flash-meta-row{display:flex;justify-content:space-between;align-items:center;padding:0 2px;margin-bottom:14px;}
-  .flash-meta-row span{font-size:11px;color:var(--muted);}
-  .flash-meta-row button{font-size:11px;color:var(--muted);text-decoration:underline;}
-  .flash-fab{
-    position:fixed;right:16px;bottom:calc(86px + var(--sab));z-index:40;
-    width:48px;height:48px;border-radius:50%;background:var(--navy);box-shadow:var(--shadow);
-    display:flex;align-items:center;justify-content:center;
+  .flash-meta-row{display:flex;justify-content:space-between;align-items:center;padding:0 2px;margin-bottom:14px;gap:10px;}
+  .flash-meta-row span{font-size:11px;color:var(--muted);line-height:1.45;}
+  .flash-delete{
+    flex:0 0 auto;padding:7px 12px;border:1px solid var(--danger);border-radius:9px;
+    background:transparent;color:var(--danger);font-size:12px;font-weight:800;text-decoration:none;
   }
-  .flash-fab .icon{width:20px;height:20px;stroke:#fff;}
+  .flash-delete:hover{background:var(--danger);color:#fff;}
+  .dict-panel{
+    width:100%;box-sizing:border-box;margin-top:6px;padding:11px 12px;border-radius:11px;
+    background:var(--card);border:1px solid var(--line);text-align:left;font-size:12px;
+    line-height:1.55;color:var(--navy-soft);white-space:pre-line;
+  }
+  .dict-panel-label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;font-weight:800;color:var(--navy);margin-bottom:4px;}
 </style>
 </head>
 <body>
@@ -871,28 +877,21 @@
 
   function addCardManual() { openCardDraft({}); }
 
-  function cleanWordForLookup(s) {
-    return s.replace(/^[^a-zA-Z']+|[^a-zA-Z']+$/g, "");
+  function cleanLookupText(s) {
+    return String(s || "").replace(/\s+/g, " ").trim().replace(/^[“”"'`]+|[“”"'`]+$/g, "");
   }
 
   function openCardDraft({ front = "", context = "", episodeId = "", time = 0 }) {
-    const trimmedFront = front.trim();
-    const lookupWord = cleanWordForLookup(trimmedFront);
-    const isSingleWord = !!lookupWord && !/\s/.test(lookupWord);
-    const draft = { front: trimmedFront, context, episodeId, time, back: "", loading: isSingleWord };
+    const trimmedFront = cleanLookupText(front);
+    const draft = { front: trimmedFront, context, episodeId, time, back: "", loading: !!trimmedFront };
     state.cardDraft = draft;
     renderAll();
-    if (isSingleWord) {
-      fetchDictionaryDefinition(lookupWord).then(result => {
+    if (trimmedFront) {
+      fetchCardMeaning(trimmedFront, context).then(result => {
         if (state.cardDraft !== draft) return;
         draft.loading = false;
-        const statusEl = document.querySelector(".dict-status");
-        if (statusEl) statusEl.remove();
-        if (result) {
-          draft.back = result;
-          const ta = document.getElementById("draft-back");
-          if (ta && !ta.value.trim()) ta.value = result;
-        }
+        draft.back = result || "";
+        renderAll();
       });
     }
   }
@@ -916,7 +915,7 @@
     state.flashcards.push({
       id: uid(), front, back,
       context: d.context || "", contextEpisodeId: d.episodeId || "", contextTime: d.time || 0,
-      ef: 2.5, iv: 1, rp: 0, due: Date.now(), createdAt: Date.now()
+      ef: 2.5, iv: 1, rp: 0, due: Date.now(), createdAt: Date.now(), lastReviewedAt: null
     });
     persistState();
     state.cardDraft = null;
@@ -932,14 +931,52 @@
       const entry = data[0];
       if (!entry || !Array.isArray(entry.meanings)) return null;
       const lines = [];
-      entry.meanings.slice(0, 2).forEach(m => {
+      entry.meanings.slice(0, 3).forEach(m => {
         const def = m.definitions && m.definitions[0];
         if (!def) return;
-        lines.push(`(${m.partOfSpeech}) ${def.definition}`);
+        lines.push(`(${m.partOfSpeech || "meaning"}) ${def.definition}`);
         if (def.example) lines.push(`Example: "${def.example}"`);
       });
       return lines.length ? lines.join("\n") : null;
     } catch (e) { return null; }
+  }
+
+  async function fetchTranslation(text) {
+    try {
+      const url = "https://api.mymemory.translated.net/get?q=" + encodeURIComponent(text) + "&langpair=en|fa";
+      const res = await fetch(url);
+      if (!res.ok) return null;
+      const data = await res.json();
+      const translated = data?.responseData?.translatedText;
+      if (!translated || translated.toLowerCase() === text.toLowerCase()) return null;
+      return translated;
+    } catch (e) { return null; }
+  }
+
+  async function fetchCardMeaning(text, context = "") {
+    const clean = cleanLookupText(text);
+    if (!clean) return null;
+
+    const isSingleWord = !/\s/.test(clean);
+    let definition = null;
+
+    if (isSingleWord) {
+      definition = await fetchDictionaryDefinition(clean);
+    }
+
+    const translation = await fetchTranslation(clean);
+
+    if (definition && translation) {
+      return `${definition}\n\nPersian meaning: ${translation}`;
+    }
+    if (definition) return definition;
+    if (translation) return `Persian meaning: ${translation}`;
+
+    if (context && context !== clean) {
+      const contextualTranslation = await fetchTranslation(context);
+      if (contextualTranslation) return `Persian meaning in context: ${contextualTranslation}`;
+    }
+    return null;
   }
 
   function buildChatGptPrompt(front, context) {
@@ -979,27 +1016,31 @@
   function setFlashTab(tab) { state.flashTab = tab; renderAll(); }
   function toggleFlashFlip(id) {
     state.flashFlipped[id] = !state.flashFlipped[id];
+    state.dictResults = null;
+    state.dictLoading = null;
+
     if (state.flashFlipped[id]) {
-      // Auto-lookup dictionary for the front word when flipping
       const card = state.flashcards.find(c => c.id === id);
-      if (card && !state.dictResults) {
+      if (card && !String(card.back || "").trim()) {
         state.dictLoading = id;
         renderAll();
-        fetchDictionaryDefinition(card.front).then(result => {
-          state.dictResults = result || "No dictionary entry found.";
+        fetchCardMeaning(card.front, card.context || "").then(result => {
+          state.dictResults = result || "No automatic meaning was found. You can delete this card and add it again, or edit its meaning.";
           state.dictLoading = null;
           renderAll();
         });
+        return;
       }
-    } else {
-      state.dictResults = null; state.dictLoading = null;
     }
     renderAll();
   }
   function rateFlashcard(id, q) {
     const c = state.flashcards.find(c => c.id === id);
     if (!c) return;
-    Object.assign(c, sm2(c, q));
+    const reviewedAt = Date.now();
+    Object.assign(c, sm2(c, q), { lastReviewedAt: reviewedAt });
+    state.dictResults = null;
+    state.dictLoading = null;
     state.flashFlipped[id] = false;
     persistState(); renderAll();
   }
@@ -1291,23 +1332,56 @@
     ].join("");
   }
 
+  function formatReviewDate(ts) {
+    if (!ts) return "Not scheduled";
+    const d = new Date(ts);
+    const today = new Date();
+    const tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1);
+    if (d.toDateString() === today.toDateString()) return "Today";
+    if (d.toDateString() === tomorrow.toDateString()) return "Tomorrow";
+    return d.toLocaleDateString(undefined, { month:"short", day:"numeric", year:"numeric" });
+  }
+
+  function reviewIntervalLabel(days) {
+    const n = Number(days) || 0;
+    if (n < 1) return "today";
+    if (n === 1) return "1 day";
+    if (n < 30) return `${Math.round(n)} days`;
+    if (n < 365) return `${Math.round(n / 30)} months`;
+    return `${Math.round(n / 365)} years`;
+  }
+
+  function getNextIntervalPreview(c, q) {
+    const result = sm2(c, q);
+    return q < 3 ? "Today" : reviewIntervalLabel(result.iv);
+  }
+
   function renderFlashcards() {
     const all = state.flashcards;
     const due = all.filter(c => c.due <= Date.now());
+    const reviewed = all.filter(c => (Number(c.rp) || 0) > 0);
     const shown = state.flashTab === "due" ? due : all;
+
     return [
       '<div class="lib-pad">',
-      '  <div class="lib-head" style="display:flex;justify-content:space-between;align-items:flex-end;">',
-      '    <div><h1>Flashcards</h1><p>' + due.length + ' due &middot; ' + all.length + ' total</p></div>',
+      '  <div class="lib-head">',
+      '    <h1>Flashcards</h1>',
+      '    <p>Review, rate, and build long-term memory.</p>',
       '  </div>',
+      '  <div class="flash-stats">',
+      `    <div class="flash-stat"><div class="n">${due.length}</div><div class="l">Due now</div></div>`,
+      `    <div class="flash-stat"><div class="n">${all.length}</div><div class="l">Total cards</div></div>`,
+      `    <div class="flash-stat"><div class="n">${reviewed.length}</div><div class="l">Reviewed</div></div>`,
+      '  </div>',
+      '  <div class="flash-flow"><b>Review flow:</b> tap a card → reveal the meaning → choose <b>Again</b>, <b>Hard</b>, <b>Good</b>, or <b>Easy</b>. The next review date is calculated automatically.</div>',
       '  <div style="display:flex;background:var(--card);border:1px solid var(--line);border-radius:11px;padding:3px;margin-bottom:14px;">',
       `    <button data-action="flash-tab" data-tab="due" style="flex:1;padding:8px;border-radius:8px;font-size:12.5px;font-weight:600;background:${state.flashTab==='due'?'var(--navy)':'transparent'};color:${state.flashTab==='due'?'#fff':'var(--navy-soft)'};">Due (${due.length})</button>`,
       `    <button data-action="flash-tab" data-tab="all" style="flex:1;padding:8px;border-radius:8px;font-size:12.5px;font-weight:600;background:${state.flashTab==='all'?'var(--navy)':'transparent'};color:${state.flashTab==='all'?'#fff':'var(--navy-soft)'};">All (${all.length})</button>`,
       '  </div>',
       shown.length === 0 ? renderFlashEmpty() : shown.map(c => renderFlashCard(c)).join(""),
-      '  <div style="height:70px;"></div>',
-      '</div>',
-      `<button class="flash-fab" data-action="add-card-manual">${ICONS.plus}</button>`
+      '  <div style="height:30px;"></div>',
+      '</div>'
     ].join("");
   }
 
@@ -1315,19 +1389,21 @@
     if (state.flashTab === "due" && state.flashcards.length > 0) {
       return `<div class="flash-empty">${ICONS.check}<div>All caught up — nothing due right now.</div></div>`;
     }
-    return `<div class="flash-empty">${ICONS.layers}<div>No flashcards yet.<br>Select a word or phrase in any transcript while listening, or tap + to add one manually.</div></div>`;
+    return `<div class="flash-empty">${ICONS.layers}<div>No flashcards yet.<br>Select a word or phrase in a transcript to add it to your Flashcards.</div></div>`;
   }
 
   function renderFlashCard(c) {
     const flipped = !!state.flashFlipped[c.id];
     const due = c.due <= Date.now();
+    const reviews = Number(c.rp) || 0;
+    const next = due ? "Due now" : `Next review: ${formatReviewDate(c.due)}`;
     return [
       `<div class="flash-card${flipped?' flipped':''}" data-action="flash-flip" data-id="${escAttr(c.id)}">`,
       flipped ? [
-        `<div class="flash-back">${esc(c.back || "(no definition saved)")}</div>`,
+        `<div class="flash-back">${esc(c.back || "(meaning not saved — looking it up…")}</div>`,
         c.context ? `<div class="flash-context"><button data-action="play-context" data-episode="${escAttr(c.contextEpisodeId||'')}" data-time="${c.contextTime||0}" onclick="event.stopPropagation()">${ICONS.play}</button> "${esc(c.context)}"</div>` : '',
-        state.dictLoading === c.id ? `<div class="dict-panel"><div class="dict-panel-label">Dictionary</div><span style="color:var(--muted);">Looking up…</span></div>` : '',
-        (state.dictResults && state.dictLoading !== c.id) ? `<div class="dict-panel" onclick="event.stopPropagation()"><div class="dict-panel-label">Dictionary</div>${esc(state.dictResults)}</div>` : ''
+        state.dictLoading === c.id ? `<div class="dict-panel"><div class="dict-panel-label">Meaning</div><span style="color:var(--muted);">Looking up…</span></div>` : '',
+        (state.dictResults && state.dictLoading !== c.id) ? `<div class="dict-panel" onclick="event.stopPropagation()"><div class="dict-panel-label">Meaning / Translation</div>${esc(state.dictResults)}</div>` : ''
       ].join("") : [
         `<div class="flash-front">${esc(c.front)}</div>`,
         `<div class="flash-hint">Tap to reveal</div>`
@@ -1335,12 +1411,12 @@
       '</div>',
       flipped ? [
         '<div class="rate-row">',
-        `  <button class="rate-btn rate-again" data-action="flash-rate" data-id="${escAttr(c.id)}" data-q="1">Again</button>`,
-        `  <button class="rate-btn rate-hard" data-action="flash-rate" data-id="${escAttr(c.id)}" data-q="3">Hard</button>`,
-        `  <button class="rate-btn rate-good" data-action="flash-rate" data-id="${escAttr(c.id)}" data-q="4">Good</button>`,
-        `  <button class="rate-btn rate-easy" data-action="flash-rate" data-id="${escAttr(c.id)}" data-q="5">Easy</button>`,
+        `  <button class="rate-btn rate-again" data-action="flash-rate" data-id="${escAttr(c.id)}" data-q="1">Again<br><small>${getNextIntervalPreview(c,1)}</small></button>`,
+        `  <button class="rate-btn rate-hard" data-action="flash-rate" data-id="${escAttr(c.id)}" data-q="3">Hard<br><small>${getNextIntervalPreview(c,3)}</small></button>`,
+        `  <button class="rate-btn rate-good" data-action="flash-rate" data-id="${escAttr(c.id)}" data-q="4">Good<br><small>${getNextIntervalPreview(c,4)}</small></button>`,
+        `  <button class="rate-btn rate-easy" data-action="flash-rate" data-id="${escAttr(c.id)}" data-q="5">Easy<br><small>${getNextIntervalPreview(c,5)}</small></button>`,
         '</div>',
-        `<div class="flash-meta-row"><span>${c.rp ? 'Reviewed ' + c.rp + 'x' : 'New card'}${due ? '' : ' &middot; due ' + new Date(c.due).toLocaleDateString()}</span><button data-action="flash-delete" data-id="${escAttr(c.id)}">Delete</button></div>`
+        `<div class="flash-meta-row"><span>${reviews === 0 ? 'New card' : `Reviews: ${reviews}`} · ${next}</span><button class="flash-delete" data-action="flash-delete" data-id="${escAttr(c.id)}" onclick="event.stopPropagation()">Delete</button></div>`
       ].join("") : ''
     ].join("");
   }
@@ -1357,13 +1433,11 @@
         '<label>From this sentence</label>',
         `<div class="context-quote"><button data-action="play-context" data-episode="${escAttr(d.episodeId||'')}" data-time="${d.time||0}">${ICONS.play}</button><span>"${esc(d.context)}"</span></div>`
       ].join("") : "",
-      '    <label>Definition &amp; examples</label>',
-      `    <textarea id="draft-back" placeholder="Auto-looked-up definitions appear here, or paste ChatGPT's answer.">${esc(d.back)}</textarea>`,
-      d.loading ? `<div class="dict-status">${ICONS.refresh} Looking up definition…</div>` : "",
-      '    <div class="chatgpt-row">',
-      `      <button class="btn-soft" data-action="add-card-copy-prompt">${ICONS.copy} Copy ChatGPT prompt</button>`,
-      `      <button class="btn-soft" data-action="add-card-open-chatgpt">${ICONS.external} Open ChatGPT</button>`,
-      '    </div>',
+      '    <label>Meaning &amp; examples</label>',
+      `    <textarea id="draft-back" placeholder="Meaning or translation will be looked up automatically. You can edit it before saving.">${esc(d.back)}</textarea>`,
+      d.loading ? `<div class="dict-status">${ICONS.refresh} Looking up meaning…</div>` : "",
+      !d.loading && !d.back ? `<div class="dict-status">No automatic meaning found. You can enter one manually.</div>` : "",
+      '<div class="dict-status">Words use an English dictionary first; phrases and fallback lookups use English → Persian translation.</div>',
       '    <div class="sheet-actions">',
       `      <button class="sheet-cancel" data-action="add-card-cancel">Cancel</button>`,
       `      <button class="sheet-save" data-action="add-card-save">Save card</button>`,
@@ -1546,7 +1620,14 @@
           progress: p.progress && typeof p.progress === "object" ? p.progress : {},
           played: p.played && typeof p.played === "object" ? p.played : {},
           playCounts: p.playCounts && typeof p.playCounts === "object" ? p.playCounts : {},
-          flashcards: Array.isArray(p.flashcards) ? p.flashcards : []
+          flashcards: Array.isArray(p.flashcards) ? p.flashcards.map(c => ({
+            ...c,
+            rp: Number(c.rp) || 0,
+            iv: Number(c.iv) || 1,
+            ef: Number(c.ef) || 2.5,
+            due: Number(c.due) || Date.now(),
+            lastReviewedAt: c.lastReviewedAt || null
+          })) : []
         });
       }
     } catch(e) {}
