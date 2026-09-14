@@ -370,17 +370,18 @@
   .rate-hard{background:var(--gold-soft);color:var(--gold);}
   .rate-good{background:var(--green-soft);color:var(--green);}
   .rate-easy{background:var(--purple-soft);color:var(--purple);}
-  .flash-meta-row{display:flex;justify-content:space-between;align-items:center;padding:0 2px;margin-bottom:14px;gap:8px;}
-  .flash-status-pill{
-    font-size:11.5px;font-weight:700;color:var(--navy-soft);background:var(--cream-2);
-    padding:6px 12px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;
-  }
-  .flash-status-pill.is-due{color:#fff;background:var(--danger);}
+  .flash-meta-row{display:flex;justify-content:flex-end;align-items:center;padding:0 2px;margin-bottom:14px;gap:8px;}
   .flash-delete-btn{
     font-size:11.5px;font-weight:700;color:var(--danger);background:rgba(179,73,47,0.1);
     padding:6px 12px;border-radius:999px;display:inline-flex;align-items:center;gap:5px;flex-shrink:0;
   }
   .flash-delete-btn .icon{width:12px;height:12px;}
+  .flash-back-empty{display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--muted);}
+  .flash-def-btn{
+    font-size:12px;font-weight:700;color:var(--navy);background:var(--cream-2);
+    padding:8px 14px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;
+  }
+  .flash-def-btn .icon{width:13px;height:13px;}
   .flash-fab{
     position:fixed;right:16px;bottom:calc(86px + var(--sab));z-index:40;
     width:48px;height:48px;border-radius:50%;background:var(--navy);box-shadow:var(--shadow);
@@ -523,6 +524,7 @@
       case "flash-flip": toggleFlashFlip(a.dataset.id); break;
       case "flash-rate": rateFlashcard(a.dataset.id, parseInt(a.dataset.q, 10)); break;
       case "flash-delete": deleteFlashcard(a.dataset.id); break;
+      case "flash-add-definition": editCardDefinition(a.dataset.id); break;
     }
   }
 
@@ -745,14 +747,27 @@
     return s.replace(/^[^a-zA-Z']+|[^a-zA-Z']+$/g, "");
   }
 
-  function openCardDraft({ front = "", context = "", episodeId = "", time = 0 }) {
+  function openCardDraft({ front = "", context = "", episodeId = "", time = 0, editId = null, skipLookup = false }) {
     const trimmedFront = front.trim();
     const lookupWord = cleanWordForLookup(trimmedFront);
-    const isSingleWord = !!lookupWord && !/\s/.test(lookupWord);
-    const draft = { front: trimmedFront, context, episodeId, time, back: "", loading: isSingleWord, lookupStatus: null, lookupWord };
+    const isSingleWord = !skipLookup && !!lookupWord && !/\s/.test(lookupWord);
+    const draft = { front: trimmedFront, context, episodeId, time, back: "", loading: isSingleWord, lookupStatus: null, lookupWord, editId };
     state.cardDraft = draft;
     renderAll();
     if (isSingleWord) runDictionaryLookup(draft);
+  }
+
+  function editCardDefinition(id) {
+    const c = state.flashcards.find(x => x.id === id);
+    if (!c) return;
+    openCardDraft({
+      front: c.front, context: c.context, episodeId: c.contextEpisodeId, time: c.contextTime,
+      editId: c.id
+    });
+    // Existing saved card: prefill its current definition (if any) once the sheet is open.
+    if (state.cardDraft) state.cardDraft.back = c.back || "";
+    const ta = document.getElementById("draft-back");
+    if (ta) ta.value = c.back || "";
   }
 
   function runDictionaryLookup(draft) {
@@ -814,6 +829,17 @@
     const back = state.cardDraft.back.trim();
     if (!front) { showNotice("Add a word or phrase before saving."); return; }
     const d = state.cardDraft;
+    if (d.editId) {
+      const c = state.flashcards.find(x => x.id === d.editId);
+      if (c) {
+        c.front = front; c.back = back;
+        persistState();
+      }
+      state.cardDraft = null;
+      renderAll();
+      showNotice(`Updated "${front}".`);
+      return;
+    }
     state.flashcards.push({
       id: uid(), front, back,
       context: d.context || "", contextEpisodeId: d.episodeId || "", contextTime: d.time || 0,
@@ -1215,11 +1241,12 @@
 
   function renderFlashCard(c) {
     const flipped = !!state.flashFlipped[c.id];
-    const due = c.due <= Date.now();
     return [
       `<div class="flash-card${flipped?' flipped':''}" data-action="flash-flip" data-id="${escAttr(c.id)}">`,
       flipped ? [
-        `<div class="flash-back">${esc(c.back || "(no definition saved)")}</div>`,
+        c.back
+          ? `<div class="flash-back">${esc(c.back)}</div>`
+          : `<div class="flash-back flash-back-empty">(no definition saved)<button class="flash-def-btn" data-action="flash-add-definition" data-id="${escAttr(c.id)}" onclick="event.stopPropagation()">${ICONS.book} Add definition</button></div>`,
         c.context ? `<div class="flash-context"><button data-action="play-context" data-episode="${escAttr(c.contextEpisodeId||'')}" data-time="${c.contextTime||0}" onclick="event.stopPropagation()">${ICONS.play}</button> "${esc(c.context)}"</div>` : ''
       ].join("") : [
         `<div class="flash-front">${esc(c.front)}</div>`,
@@ -1235,7 +1262,6 @@
         `  <button class="rate-btn rate-easy" data-action="flash-rate" data-id="${escAttr(c.id)}" data-q="5"><span class="r-label">Easy</span><span class="r-interval">${fmtInterval(sm2(c,5).iv)}</span></button>`,
         '</div>',
         `<div class="flash-meta-row">`,
-        `  <span class="flash-status-pill${due ? ' is-due' : ''}">${c.rp ? (due ? 'Due now' : fmtDueRelative(c.due)) : 'New card'}${c.rp ? ' &middot; reviewed ' + c.rp + 'x' : ''}</span>`,
         `  <button class="flash-delete-btn" data-action="flash-delete" data-id="${escAttr(c.id)}">${ICONS.trash}Delete</button>`,
         `</div>`
       ].join("") : ''
@@ -1247,7 +1273,7 @@
     return [
       '<div class="sheet-backdrop" data-action="add-card-backdrop">',
       '  <div class="sheet">',
-      '    <div class="sheet-title">Add Flashcard</div>',
+      `    <div class="sheet-title">${d.editId ? 'Edit Flashcard' : 'Add Flashcard'}</div>`,
       '    <label>Word or phrase</label>',
       `    <input type="text" id="draft-front" value="${escAttr(d.front)}">`,
       d.context ? [
@@ -1263,7 +1289,7 @@
       '    </div>',
       '    <div class="sheet-actions">',
       `      <button class="sheet-cancel" data-action="add-card-cancel">Cancel</button>`,
-      `      <button class="sheet-save" data-action="add-card-save">Save card</button>`,
+      `      <button class="sheet-save" data-action="add-card-save">${d.editId ? 'Save changes' : 'Save card'}</button>`,
       '    </div>',
       '  </div>',
       '</div>'
