@@ -480,6 +480,7 @@
   const levelOrder = ["elementary","intermediate","upper_intermediate","advanced"];
 
   const TRANSLATE_LANGS = [
+    { code:"en", label:"English" },
     { code:"fa", label:"Persian" },
     { code:"es", label:"Spanish" },
     { code:"fr", label:"French" },
@@ -542,7 +543,7 @@
         const saved = localStorage.getItem(DICT_LANG_KEY);
         if (saved && TRANSLATE_LANGS.some(l => l.code === saved)) return saved;
       } catch(e) {}
-      return "fa";
+      return "en";
     })()
   };
 
@@ -1034,10 +1035,12 @@
   async function fetchWordMeaning(term, targetLang) {
     const clean = (term || "").trim();
     if (!clean) return null;
+    const lang = targetLang || "en";
     const lookupWord = cleanWordForLookup(clean);
     const isSingleWord = !!lookupWord && !/\s/.test(lookupWord);
+    const wantTranslation = lang.toLowerCase() !== "en";
     const [translation, primaryEnglish] = await Promise.all([
-      translateText(clean, targetLang || "fa"),
+      wantTranslation ? translateText(clean, lang) : Promise.resolve(null),
       isSingleWord ? fetchEnglishDefinition(lookupWord) : fetchWiktionaryDefinition(clean)
     ]);
     let english = primaryEnglish;
@@ -1045,7 +1048,7 @@
       english = isSingleWord ? await fetchWiktionaryDefinition(lookupWord) : null;
     }
     const parts = [];
-    const langLabel = (TRANSLATE_LANGS.find(l => l.code === targetLang) || {}).label || targetLang;
+    const langLabel = (TRANSLATE_LANGS.find(l => l.code === lang) || {}).label || lang;
     if (translation && translation.trim().toLowerCase() !== clean.toLowerCase()) {
       parts.push(`\u{1F310} ${langLabel}: ${translation}`);
     }
@@ -1548,7 +1551,7 @@
         `  <button class="rate-btn rate-good" data-action="flash-rate" data-id="${escAttr(c.id)}" data-q="4">Good</button>`,
         `  <button class="rate-btn rate-easy" data-action="flash-rate" data-id="${escAttr(c.id)}" data-q="5">Easy</button>`,
         '</div>',
-        `<div class="flash-meta-row"><span>${(c.reviewCount||0) ? 'Reviewed ' + c.reviewCount + 'x' : 'New card'}${due ? '' : ' &middot; due ' + new Date(c.due).toLocaleDateString()}</span><button class="flash-delete-btn" data-action="flash-delete" data-id="${escAttr(c.id)}" onclick="event.stopPropagation()">${ICONS.trash} Delete</button></div>`
+        `<div class="flash-meta-row"><span>${(c.reviewCount||0) ? 'Reviewed ' + c.reviewCount + 'x' : 'New card'}${due ? '' : ' &middot; due ' + new Date(c.due).toLocaleDateString()}</span><button class="flash-delete-btn" data-action="flash-delete" data-id="${escAttr(c.id)}">${ICONS.trash} Delete</button></div>`
       ].join("") : ''
     ].join("");
   }
